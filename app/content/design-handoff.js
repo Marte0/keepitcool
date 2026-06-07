@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "step-2-approved",
-  currentStep: 3,
-  currentStepName: "Game section",
+  status: "step-3-approved",
+  currentStep: 4,
+  currentStepName: "Energy + Learning goals",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -37,8 +37,18 @@ export const DESIGN_HANDOFF = {
     "Step 2 — sizing cartelle: row max 228px Figma, shrink quando 5 non entrano; carousel max 252px, inset 1rem (full-bleed)",
     "Step 2 — carousel: HeroFoldersCarousel client, spacers snap, ombre compatte mobile (no clip shadow)",
     "Step 2 — rimosso mock dashboard legacy (frost/mist/ice); copy HERO in sections.js",
+    "Step 3 — GameSection dopo Hero, id=approach, bg-cream; GameCard + GameCardStack + GameCardsRoot",
+    "Step 3 — titolo text-section + highlight-yellow solo su «cooperative»; highlight draw-in dopo fade-up (.reveal, delay per stagger)",
+    "Step 3 — reveal desktop: card TALK→PLAN→PLAY (0–2) poi titolo/body (3–4); mobile: titolo/body (0–1) poi card (2–4)",
+    "Step 3 — desktop grid 530px|stack; card tilt −5°/+3°/−2°; gap 0.5rem statico (no overlap); testo centrato verticalmente vs stack",
+    "Step 3 — gradient card ellipse 220% centro alto; end colori alleggeriti (#eb7589 / #3aaab0 / #e07848)",
+    "Step 3 — 9 PNG public/images/game/{talk,plan,play}/asset-{1,2,3}; proporzioni native displayWidth",
+    "Step 3 — asset posizioni finali: alto-destra / metà-sinistra / basso-sinistra; partono sotto card (centro), escono verso esterno",
+    "Step 3 — scroll focus: card attiva solo se centro entro ~128px da centro viewport; scale + raddrizza + asset",
+    "Step 3 — mobile: card quadrate aspect-square, tilt come desktop, stessa animazione asset/focus via GameCardsRoot",
+    "Step 3 — asset timing: uscita 520ms stagger; rientro 760ms insieme (no stagger); card rientro 620ms",
   ],
-  next: "Step 3 — Game section: titolo cooperative game, card TALK/PLAN/PLAY (game-card-*), highlight-yellow, asset Figma",
+  next: "Step 4 — Energy + Learning goals: titolo Energy shapes the future + highlight, body, 4 SDG card (bg-sdg-* scoped); un micro-step per volta",
   blockers: [],
   fonts: {
     display: {

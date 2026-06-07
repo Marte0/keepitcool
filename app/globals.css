@@ -85,23 +85,27 @@
     #e9b717 50%,
     #d8970a 100%
   );
+  /*
+    Game card gradients — ellipse grande + centro alto (Figma aveva la fine fuori card).
+    Il tono 100% resta più chiaro del vecchio stop scuro (#cf3453 / #076d70 / #bb4a10).
+  */
   --game-talk-gradient: radial-gradient(
-    ellipse 100% 100% at 50% 20%,
+    ellipse 220% 190% at 50% -12%,
     #f27a92 0%,
-    #e05773 50%,
-    #cf3453 100%
+    #e05773 42%,
+    #eb7589 100%
   );
   --game-plan-gradient: radial-gradient(
-    ellipse 100% 100% at 50% 20%,
+    ellipse 220% 190% at 50% -12%,
     #4fb6b9 0%,
-    #2b9295 50%,
-    #076d70 100%
+    #2b9295 42%,
+    #3aaab0 100%
   );
   --game-play-gradient: radial-gradient(
-    ellipse 100% 100% at 50% 20%,
+    ellipse 220% 190% at 50% -12%,
     #fa8a50 0%,
-    #da6a30 50%,
-    #bb4a10 100%
+    #da6a30 42%,
+    #e07848 100%
   );
   --tag-student-gradient: radial-gradient(
     ellipse 120% 100% at 50% 0%,
@@ -172,6 +176,116 @@
   background-color: #da6a30;
 }
 
+/*
+  Game section — card stack (desktop tilt, no static overlap) + asset slots (TALK only).
+  Gap stretto: l’overlap arriverà con l’animazione scroll.
+*/
+.game-card-stack {
+  --game-card-talk-h: 304px;
+  --game-card-plan-h: 290px;
+  --game-card-play-h: 297px;
+  --game-card-gap: 0.5rem;
+  overflow: visible;
+  min-height: calc(
+    var(--game-card-talk-h) + var(--game-card-gap) + var(--game-card-plan-h) +
+      var(--game-card-gap) + var(--game-card-play-h)
+  );
+}
+
+.game-card-stack-item {
+  position: absolute;
+}
+
+.game-card-stack-item-inner {
+  transform: rotate(var(--game-card-tilt, 0deg));
+  transform-origin: center center;
+  height: 100%;
+  width: 100%;
+  transition:
+    transform var(--game-card-motion-duration, 450ms) cubic-bezier(0.22, 1, 0.36, 1),
+    filter var(--game-card-motion-duration, 450ms) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.game-card-stack-item:not(.is-active) .game-card-stack-item-inner,
+.game-card-mobile-item:not(.is-active) .game-card-stack-item-inner {
+  --game-card-motion-duration: 620ms;
+}
+
+.game-card-stack-item.is-active {
+  z-index: 10;
+}
+
+.game-card-stack-item.is-active .game-card-stack-item-inner {
+  transform: rotate(0deg) scale(1.08) translateY(-1.5rem);
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.18));
+}
+
+.game-card-mobile-item.is-active .game-card-stack-item-inner {
+  transform: rotate(0deg) scale(1.06);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16));
+}
+
+.game-card-scene {
+  overflow: visible;
+  isolation: isolate;
+}
+
+.game-card-assets {
+  overflow: visible;
+}
+
+.game-card-asset {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--game-asset-w, auto);
+  transform: translate3d(
+      calc(-50% + var(--game-asset-x, 0px)),
+      calc(-50% + var(--game-asset-y, 0px)),
+      0
+    )
+    rotate(var(--game-asset-tilt, 0deg));
+  transform-origin: center center;
+  transition:
+    transform var(--game-asset-duration, 520ms) cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--game-asset-delay, 0ms);
+}
+
+.game-card-asset-img {
+  display: block;
+  width: var(--game-asset-w, auto);
+  height: auto;
+  max-width: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.14));
+}
+
+.game-card-stack-item--talk {
+  --game-card-tilt: -5deg;
+  top: 0;
+  right: 0;
+  width: min(var(--game-card-talk-h), 100%);
+  z-index: 3;
+}
+
+.game-card-stack-item--plan {
+  --game-card-tilt: 3deg;
+  top: calc(var(--game-card-talk-h) + var(--game-card-gap));
+  right: 20px;
+  width: min(var(--game-card-plan-h), 100%);
+  z-index: 2;
+}
+
+.game-card-stack-item--play {
+  --game-card-tilt: -2deg;
+  top: calc(
+    var(--game-card-talk-h) + var(--game-card-gap) + var(--game-card-plan-h) +
+      var(--game-card-gap)
+  );
+  right: 36px;
+  width: min(var(--game-card-play-h), 100%);
+  z-index: 1;
+}
+
 .tag-student {
   background-image: var(--tag-student-gradient);
   background-color: #8eaa2c;
@@ -237,6 +351,37 @@ body {
   background-color: var(--color-yellow-flat);
   border-radius: 4px;
   z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+@keyframes highlight-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.reveal.is-visible .highlight-yellow::after {
+  animation: highlight-draw 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+.reveal-delay-1.is-visible .highlight-yellow::after {
+  animation-delay: 0.65s;
+}
+
+.reveal-delay-2.is-visible .highlight-yellow::after {
+  animation-delay: 0.75s;
+}
+
+.reveal-delay-3.is-visible .highlight-yellow::after {
+  animation-delay: 0.85s;
+}
+
+.reveal-delay-4.is-visible .highlight-yellow::after {
+  animation-delay: 0.95s;
 }
 
 @keyframes fade-up {
@@ -387,11 +532,30 @@ body {
     transition: none;
   }
 
+  .highlight-yellow::after {
+    transform: scaleX(1);
+    animation: none;
+  }
+
   .hero-folder-card:hover,
   .hero-folder-card:focus-visible,
   .hero-folder-card.is-active {
     transform: rotate(var(--folder-tilt, 0deg));
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+
+  .game-card-stack-item.is-active .game-card-stack-item-inner {
+    transform: rotate(var(--game-card-tilt, 0deg));
+    filter: none;
+  }
+
+  .game-card-mobile-item.is-active .game-card-stack-item-inner {
+    transform: rotate(var(--game-card-tilt, 0deg));
+    filter: none;
+  }
+
+  .game-card-asset {
+    transition: none;
   }
 
   *,

@@ -201,9 +201,13 @@ export default function StyleGuidePage() {
             </p>
           </div>
           <div>
-            <p className="mb-2 text-caption text-ink-muted">highlight-yellow (flat mark)</p>
+            <p className="mb-2 text-caption text-ink-muted">highlight-yellow (flat mark + draw-in on reveal)</p>
             <p className="font-display text-section text-ink">
               A <span className="highlight-yellow">cooperative</span> game about energy
+            </p>
+            <p className="mt-2 text-caption text-ink-muted">
+              In sezione con <code className="text-ink">.reveal</code>: fade-up del testo, poi
+              sottolineatura da sinistra (~80% del fade-up). Titolo Game section usa delay 3.
             </p>
           </div>
         </div>

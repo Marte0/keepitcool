@@ -1,0 +1,46 @@
+---
+description: KeepItCool design tokens, scoped colors, typography
+globs: app/**/*.{js,css,jsx,mdx}
+alwaysApply: false
+---
+
+# KeepItCool — design system
+
+## Dove vive
+
+- Token: [`app/globals.css`](app/globals.css) (`@theme inline` + `:root` gradients)
+- Preview: [`app/styleguide/page.js`](app/styleguide/page.js) → `/styleguide`
+- Note: [`app/content/design-handoff.js`](app/content/design-handoff.js)
+
+Pattern come portfolio: `@source` esplicito, componenti in `app/components/`, copy in `app/content/`.
+
+## Font
+
+- Titoli: **Chillax Bold** → `font-display` / `font-chillax`
+- Body/UI: **Outfit** → `font-body` / `font-outfit`
+
+## Ink (gerarchia testo)
+
+| Token | Hex | Uso |
+|-------|-----|-----|
+| `ink` | `#2c2c2c` | Testo principale, bordi nav-pill |
+| `ink-muted` | `#434343` | Secondario, titoli sezione soft |
+| `ink-warm` | `#503b14` | Testo su CTA giallo |
+
+## Colori scoped — non usare fuori contesto
+
+- **SDG** (`bg-sdg-*`): solo card Learning Goals
+- **Game** (`game-card-talk/plan/play`): solo sezione TALK/PLAN/PLAY
+- **Tag** (`tag-student`, `tag-psychologist`): solo pill label; nomi team = stile psychologist
+
+## CTA vs highlight
+
+- CTA: gradient radiale → classe `btn-cta` / `Button variant="cta"` — **non** `#fad724` flat
+- Highlight testo: `highlight-yellow` (flat `#fad724` sotto parola)
+
+## Utilities chiave
+
+- `nav-pill`: crema 50% + `backdrop-blur`; `nav-pill-sticky` per sticky top
+- `max-w-page`, `shadow-card`, tipografia fluida (`text-display`, `text-section`, …)
+
+Gradient e classi scoped fuori `@layer` in `globals.css` (affidabilità Tailwind v4).

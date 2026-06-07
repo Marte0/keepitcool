@@ -1,0 +1,23 @@
+{
+  "name": "keepitcool",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "WATCHPACK_POLLING=true WATCHPACK_POLLING_INTERVAL=1000 next dev",
+    "dev:reset": "pkill -f 'next dev' 2>/dev/null || true; for p in 3000 3002; do lsof -ti tcp:$p 2>/dev/null | xargs kill -9 2>/dev/null || true; done; rm -f .next/dev/lock && npm run dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4"
+  }
+}

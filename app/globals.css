@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/*
+  Tailwind v4 + Next.js 16 (Turbopack) non rileva sempre i source files in produzione.
+  Forziamo la scansione con @source esplicito (pattern portfolio).
+*/
+@source "./**/*.{js,jsx,ts,tsx,mdx}";
+
+/*
+  ================================
+  DESIGN SYSTEM — KeepItCool (Figma)
+  ================================
+*/
+
+@theme inline {
+  /* ========================================
+     COLORI GLOBALI
+     ======================================== */
+  --color-cream: #fbeed6;
+  --color-cream-light: #fcf4e7;
+  --color-ink: #2c2c2c;
+  --color-ink-muted: #434343;
+  --color-ink-warm: #503b14;
+  --color-yellow-flat: #fad724;
+  --color-white: #ffffff;
+
+  --color-background: #fbeed6;
+  --color-foreground: #2c2c2c;
+
+  /*
+    SDG card colors — USARE SOLO in LearningGoals / SdgCard.
+  */
+  --color-sdg-red: #c5192d;
+  --color-sdg-yellow: #fcc30b;
+  --color-sdg-brown: #bf8b2e;
+  --color-sdg-green: #3f7e44;
+
+  /*
+    Game cards TALK / PLAN / PLAY — USARE SOLO in GameSection.
+    Valori mid-tone per swatch; le card usano i gradient sotto.
+  */
+  --color-game-talk: #e05773;
+  --color-game-plan: #2b9295;
+  --color-game-play: #da6a30;
+
+  /*
+    Tag labels (student, psychologist, team) — USARE SOLO su pill/label.
+  */
+  --color-tag-student-text: #435117;
+  --color-tag-psychologist-text: #732474;
+
+  /* ========================================
+     FONT FAMILIES
+     display/body = ruoli semantici; chillax/outfit = alias espliciti
+     ======================================== */
+  --font-display: var(--font-chillax-custom, ui-sans-serif, system-ui, sans-serif);
+  --font-body: var(--font-outfit-custom, ui-sans-serif, system-ui, sans-serif);
+  --font-outfit: var(--font-outfit-custom, ui-sans-serif, system-ui, sans-serif);
+  --font-chillax: var(--font-chillax-custom, ui-sans-serif, system-ui, sans-serif);
+
+  /* ========================================
+     ANIMATIONS
+     ======================================== */
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+
+  /* ========================================
+     TYPOGRAPHY — fluid scaling (375px → 1280px)
+     ======================================== */
+  --text-display: clamp(2.25rem, 1.5rem + 3.2vw, 5rem);
+  --text-section: clamp(2.5rem, 1.85rem + 2.76vw, 4rem);
+  --text-lead: clamp(1.125rem, 1.03rem + 0.4vw, 1.5rem);
+  --text-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-ui: 1rem;
+  --text-caption: clamp(0.75rem, 0.72rem + 0.13vw, 0.875rem);
+}
+
+:root {
+  --page-max: 1280px;
+  --section-py: clamp(4rem, 3rem + 4vw, 7rem);
+  --shadow-card: 0 4px 7.4px rgba(0, 0, 0, 0.12);
+  --cta-gradient: radial-gradient(
+    ellipse 120% 100% at 50% 0%,
+    #fad724 0%,
+    #e9b717 50%,
+    #d8970a 100%
+  );
+  --game-talk-gradient: radial-gradient(
+    ellipse 100% 100% at 50% 20%,
+    #f27a92 0%,
+    #e05773 50%,
+    #cf3453 100%
+  );
+  --game-plan-gradient: radial-gradient(
+    ellipse 100% 100% at 50% 20%,
+    #4fb6b9 0%,
+    #2b9295 50%,
+    #076d70 100%
+  );
+  --game-play-gradient: radial-gradient(
+    ellipse 100% 100% at 50% 20%,
+    #fa8a50 0%,
+    #da6a30 50%,
+    #bb4a10 100%
+  );
+  --tag-student-gradient: radial-gradient(
+    ellipse 120% 100% at 50% 0%,
+    #8eaa2c 0%,
+    #7c9824 50%,
+    #708721 100%
+  );
+  --tag-psychologist-gradient: radial-gradient(
+    ellipse 120% 100% at 50% 0%,
+    #e4abe5 0%,
+    #b86eb9 100%
+  );
+}
+
+@utility max-w-page {
+  max-width: var(--page-max);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+/*
+  Nav pill — classi normali (come btn-cta) per affidabilità backdrop-filter in Tailwind v4.
+*/
+.nav-pill {
+  background-color: color-mix(in srgb, var(--color-cream) 50%, transparent);
+  border: 1px solid var(--color-ink);
+  border-radius: 9999px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.nav-pill-sticky {
+  position: sticky;
+  top: 1rem;
+  z-index: 50;
+}
+
+/*
+  Utilities fuori @layer — gradient e colori scoped più affidabili in Tailwind v4.
+*/
+.btn-cta {
+  background-image: var(--cta-gradient);
+  background-color: #e9b717;
+  color: #503b14;
+}
+
+.game-card-talk {
+  background-image: var(--game-talk-gradient);
+  background-color: #e05773;
+}
+
+.game-card-plan {
+  background-image: var(--game-plan-gradient);
+  background-color: #2b9295;
+}
+
+.game-card-play {
+  background-image: var(--game-play-gradient);
+  background-color: #da6a30;
+}
+
+.tag-student {
+  background-image: var(--tag-student-gradient);
+  background-color: #8eaa2c;
+  color: #435117;
+}
+
+.tag-psychologist {
+  background-image: var(--tag-psychologist-gradient);
+  background-color: #b86eb9;
+  color: #732474;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  Chillax Bold — unico peso disponibile (700).
+  Regola esplicita fuori @layer così vince sull'ereditarietà di font-body.
+*/
+.font-display,
+.font-chillax {
+  font-family: var(--font-chillax-custom, ui-sans-serif, system-ui, sans-serif);
+  font-weight: 700;
+}
+
+/* Display type — Chillax uppercase titles */
+.font-display.text-display,
+.font-display.text-section,
+.font-chillax.text-display,
+.font-chillax.text-section {
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Text highlight mark (flat yellow, not CTA gradient) */
+.highlight-yellow {
+  position: relative;
+  display: inline;
+  z-index: 0;
+}
+
+.highlight-yellow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.22em;
+  height: 0.35em;
+  background-color: var(--color-yellow-flat);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.75rem, 0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

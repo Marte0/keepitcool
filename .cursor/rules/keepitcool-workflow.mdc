@@ -1,0 +1,53 @@
+---
+description: KeepItCool redesign workflow, step order, and handoff updates
+alwaysApply: true
+---
+
+# KeepItCool — workflow
+
+## Progetto
+
+- Repo: `keepitcool` (Next.js 16, React 19, Tailwind v4, JavaScript)
+- Figma (intent, non pixel-perfect): https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655
+- Tutti i testi sono **placeholder**
+- Spacing/font Figma indicativi — usare gerarchia + `clamp()`, poi aggiustare a occhio
+
+## Ciclo obbligatorio
+
+1. Proponi (design o implementazione)
+2. Utente revisiona su `localhost:3000` e/o `/styleguide`
+3. Utente approva o chiede modifiche
+4. Solo **dopo** approvazione esplicita → step successivo
+
+Non implementare più step in bulk. Un micro-step per volta se serve.
+
+## Ordine step
+
+0. Design tokens (`/styleguide`) — **approvato**
+1. Navbar
+2. Hero
+3. Game section
+4. Energy + Learning goals
+5. Testimonials
+6. Partners
+7. Team
+8. Final CTA
+
+Stato corrente: leggere sempre [`app/content/design-handoff.js`](app/content/design-handoff.js) prima di agire.
+
+## Handoff — aggiornare a fine step
+
+Quando l'utente approva uno step (es. "approvo Step 1"):
+
+1. Aggiornare [`app/content/design-handoff.js`](app/content/design-handoff.js):
+   - `status`, `currentStep`, `currentStepName`
+   - Aggiungere voci in `approved[]` con decisioni chiave (non solo "fatto")
+   - `next` = prossimo step; `blockers` se presenti
+2. Fornire all'utente un **bootstrap prompt** breve per la chat successiva (1 step, file `@` da leggere, criterio di done)
+3. Non editare file in `.cursor/plans/` senza chiedere
+
+## Vincoli
+
+- Workspace: `/Users/marte/Documents/repos/keepitcool`
+- Non commit/push salvo richiesta esplicita
+- Home `/` è ancora placeholder blu — redesign sezione per sezione dopo i token

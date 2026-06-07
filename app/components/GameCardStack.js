@@ -58,10 +58,20 @@ function GameCardScene({ card, isActive }) {
   );
 }
 
+const HASH_GRACE_MS = 600;
+
+function isHowItWorksHash() {
+  if (typeof window === "undefined") return false;
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  return hash === "how-it-works";
+}
+
 export function GameCardsRoot({ cards, children }) {
   const [activeId, setActiveId] = useState(null);
   const itemRefs = useRef(new Map());
   const reducedMotionRef = useRef(false);
+  const hashGraceRef = useRef(false);
+  const userScrolledRef = useRef(false);
 
   const registerRef = useCallback((id, el, variant) => {
     let entry = itemRefs.current.get(id);
@@ -89,6 +99,10 @@ export function GameCardsRoot({ cards, children }) {
 
   const updateActiveCard = useCallback(() => {
     if (reducedMotionRef.current) return;
+    if (hashGraceRef.current && !userScrolledRef.current) {
+      setActiveId(null);
+      return;
+    }
 
     const viewportCenter = window.innerHeight * 0.5;
     const activationThreshold = Math.min(window.innerHeight * 0.18, 128);
@@ -114,21 +128,54 @@ export function GameCardsRoot({ cards, children }) {
     setActiveId(closestDistance <= activationThreshold ? closestId : null);
   }, [getVisibleEl]);
 
+  const beginHashGrace = useCallback(() => {
+    hashGraceRef.current = true;
+    userScrolledRef.current = false;
+    setActiveId(null);
+  }, []);
+
+  const onScroll = useCallback(
+    (e) => {
+      if (e.isTrusted) userScrolledRef.current = true;
+      if (hashGraceRef.current && userScrolledRef.current) {
+        hashGraceRef.current = false;
+      }
+      updateActiveCard();
+    },
+    [updateActiveCard],
+  );
+
   useEffect(() => {
     reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotionRef.current) return;
 
-    const run = () => requestAnimationFrame(updateActiveCard);
+    let graceTimer;
 
+    const armGraceIfNeeded = () => {
+      if (!isHowItWorksHash()) return;
+      beginHashGrace();
+      clearTimeout(graceTimer);
+      graceTimer = setTimeout(() => {
+        hashGraceRef.current = false;
+        updateActiveCard();
+      }, HASH_GRACE_MS);
+    };
+
+    armGraceIfNeeded();
+    window.addEventListener("hashchange", armGraceIfNeeded);
+
+    const run = () => requestAnimationFrame(updateActiveCard);
     run();
-    window.addEventListener("scroll", updateActiveCard, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", updateActiveCard, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", updateActiveCard);
+      clearTimeout(graceTimer);
+      window.removeEventListener("hashchange", armGraceIfNeeded);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", updateActiveCard);
     };
-  }, [updateActiveCard]);
+  }, [beginHashGrace, onScroll, updateActiveCard]);
 
   return (
     <GameCardsContext.Provider value={{ cards, activeId, registerRef }}>

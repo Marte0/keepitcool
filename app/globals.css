@@ -125,6 +125,16 @@
   --hero-folder-overlap: 2.5rem;
   --hero-folder-carousel-max: 252px;
   --hero-folder-carousel-inset: 1rem;
+
+  /* Energy photo fan (Figma ~232px) */
+  --energy-photo-max: 232px;
+  --energy-photo-mobile: min(160px, calc((100vw - 3rem) / 2));
+
+  /* SDG Learning Goals cards (Figma ~235px) */
+  --sdg-card-max: 235px;
+  --sdg-radius-outer: 1.5rem;
+  --sdg-radius-padding: 1.25rem;
+  --sdg-radius-inner: max(0px, calc(var(--sdg-radius-outer) - var(--sdg-radius-padding)));
 }
 
 @utility max-w-page {
@@ -302,6 +312,10 @@ html {
   scroll-padding-top: 5rem;
 }
 
+.scroll-anchor-how-it-works {
+  scroll-margin-top: calc(5rem + 6rem);
+}
+
 body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -432,6 +446,78 @@ body {
 }
 
 /*
+  Energy — photo fan (desktop hover) + 2×2 grid (mobile).
+*/
+.energy-photo-img {
+  width: var(--energy-photo-w, var(--energy-photo-max));
+  height: var(--energy-photo-w, var(--energy-photo-max));
+}
+
+.energy-photo-fan {
+  --energy-photo-w: min(
+    var(--energy-photo-max),
+    calc((100vw - 6rem + 3 * 3rem) / 4)
+  );
+}
+
+.energy-photo-card {
+  transform: rotate(var(--photo-tilt, 0deg)) translateZ(0);
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.energy-photo-card:hover,
+.energy-photo-card:focus-visible {
+  transform: translateY(-22px) scale(1.08) rotate(0deg);
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.18));
+  z-index: 20;
+}
+
+.energy-photo-grid {
+  --energy-photo-w: var(--energy-photo-mobile);
+}
+
+.energy-photo-grid-item {
+  transform: rotate(var(--photo-tilt, 0deg));
+}
+
+/*
+  Learning Goals — SDG cards (tilt + hover lift on pointer devices).
+*/
+.sdg-cards-grid .sdg-card {
+  max-width: var(--sdg-card-max);
+}
+
+.sdg-card {
+  border-radius: var(--sdg-radius-outer);
+  transform: rotate(var(--sdg-tilt-mobile, 0deg)) translateZ(0);
+  transform-origin: center center;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sdg-card__media {
+  border-radius: var(--sdg-radius-inner);
+}
+
+@media (min-width: 768px) {
+  .sdg-card {
+    transform: rotate(var(--sdg-tilt, 0deg)) translateZ(0);
+  }
+}
+
+@media (hover: hover) {
+  .sdg-card:hover,
+  .sdg-card:focus-visible {
+    transform: translateY(-22px) scale(1.08) rotate(0deg);
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.18));
+    z-index: 20;
+  }
+}
+
+/*
   Hero — folder lift (desktop hover + mobile carousel center).
 */
 .hero-folder-img {
@@ -541,6 +627,18 @@ body {
   .hero-folder-card:focus-visible,
   .hero-folder-card.is-active {
     transform: rotate(var(--folder-tilt, 0deg));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+
+  .energy-photo-card:hover,
+  .energy-photo-card:focus-visible {
+    transform: rotate(var(--photo-tilt, 0deg));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+
+  .sdg-card:hover,
+  .sdg-card:focus-visible {
+    transform: rotate(var(--sdg-tilt-mobile, var(--sdg-tilt, 0deg)));
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
   }
 

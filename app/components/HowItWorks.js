@@ -4,7 +4,6 @@ import { HOW_IT_WORKS } from "../content/sections";
 export default function HowItWorks() {
   return (
     <section
-      id="how-it-works"
       className="border-b border-mist bg-snow"
       style={{ paddingBlock: "var(--section-py)" }}
     >

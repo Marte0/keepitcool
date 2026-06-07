@@ -205,6 +205,105 @@ export const GAME = {
   ],
 };
 
+export const ENERGY = {
+  titleBefore: "Energy shapes the ",
+  titleHighlight: "future",
+  body:
+    "Energy is at the centre of the climate transition, yet young people often lack dedicated tools to understand how it works. The goal is to make this complexity more accessible by creating a tailored medium for them.",
+  photos: [
+    {
+      src: "/images/energy/phones-energy-dashboard.jpg",
+      alt: "Two phones showing gas import terminals and the energy crisis dashboard",
+      tilt: -5.67,
+      mobileTilt: -3.5,
+      offsetY: 28,
+      width: 1200,
+      height: 1200,
+    },
+    {
+      src: "/images/energy/grid-connection-gameplay.jpg",
+      alt: "Student playing the grid connection improvements minigame",
+      tilt: 10.13,
+      mobileTilt: 3.5,
+      offsetY: 0,
+      width: 1200,
+      height: 1200,
+    },
+    {
+      src: "/images/energy/low-carbon-power-site.jpg",
+      alt: "Low-carbon power site card on a phone during gameplay",
+      tilt: -3.97,
+      mobileTilt: -3,
+      offsetY: 42,
+      width: 1200,
+      height: 1200,
+    },
+    {
+      src: "/images/energy/students-playing-together.jpg",
+      alt: "Two students playing the cooperative energy game together",
+      tilt: 10.89,
+      mobileTilt: 4,
+      offsetY: 8,
+      width: 1200,
+      height: 1200,
+    },
+  ],
+};
+
+export const LEARNING_GOALS = {
+  title: "Learning goals",
+  cards: [
+    {
+      id: "sdg-4",
+      sdg: 4,
+      label: "Quality Education",
+      colorClass: "bg-sdg-red",
+      tilt: -7,
+      mobileTilt: -3,
+      body: "Making complex energy topics accessible through active, game-based learning.",
+      icon: "/images/sdg/sdg-4-quality-education.png",
+      width: 1500,
+      height: 1500,
+    },
+    {
+      id: "sdg-7",
+      sdg: 7,
+      label: "Affordable and Clean Energy",
+      colorClass: "bg-sdg-yellow",
+      tilt: -3.5,
+      mobileTilt: 3,
+      body: "Helping players understand energy sources, infrastructures and transition choices.",
+      icon: "/images/sdg/sdg-7-affordable-clean-energy.png",
+      width: 1500,
+      height: 1500,
+    },
+    {
+      id: "sdg-12",
+      sdg: 12,
+      label: "Responsible Consumption and Production",
+      colorClass: "bg-sdg-brown",
+      tilt: 3.5,
+      mobileTilt: -3,
+      body: "Encouraging reflection on energy demand, resource use and the impact of collective choices.",
+      icon: "/images/sdg/sdg-12-responsible-consumption.png",
+      width: 1500,
+      height: 1500,
+    },
+    {
+      id: "sdg-13",
+      sdg: 13,
+      label: "Climate Action",
+      colorClass: "bg-sdg-green",
+      tilt: 7,
+      mobileTilt: 3,
+      body: "Connecting energy decisions with emissions, climate goals and long-term consequences.",
+      icon: "/images/sdg/sdg-13-climate-action.png",
+      width: 1500,
+      height: 1500,
+    },
+  ],
+};
+
 export const ABOUT = {
   eyebrow: "The problem",
   title: "When temperature drifts, quality follows.",

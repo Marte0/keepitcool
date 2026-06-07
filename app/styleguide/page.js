@@ -51,9 +51,9 @@ function Swatch({ name, className, hex, note }) {
 function SdgCardMock({ colorClass, label, hex }) {
   return (
     <div
-      className={`flex min-h-[220px] w-full max-w-[200px] flex-col gap-3 rounded-3xl border-[10px] border-white p-5 shadow-card sm:w-[200px] ${colorClass}`}
+      className={`sdg-card flex min-h-[220px] w-full max-w-[200px] flex-col gap-3 border-[10px] border-white p-5 shadow-card sm:w-[200px] ${colorClass}`}
     >
-      <div className="aspect-square w-full rounded-2xl bg-white/25" aria-hidden />
+      <div className="sdg-card__media aspect-square w-full bg-white/25" aria-hidden />
       <p className="text-caption leading-snug text-cream-light">Learning goal</p>
       <p className="font-display text-caption uppercase text-cream-light">{label}</p>
       <p className="text-caption text-cream-light/80">{hex}</p>

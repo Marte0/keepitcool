@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const AUTO_SCROLL_MS = 3500;
-const PAUSE_RESUME_MS = 5000;
+const AUTO_SCROLL_MS = 1300;
+const PAUSE_RESUME_MS = 3500;
 
 export default function HeroFoldersCarousel({ folders }) {
   const scrollRef = useRef(null);

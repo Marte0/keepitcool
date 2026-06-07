@@ -60,9 +60,9 @@ export default function Hero() {
             </div>
           </RevealOnScroll>
 
-          <div className="mt-12 w-full shrink-0 md:hidden">
+          <RevealOnScroll delay={3} className="mt-12 w-full shrink-0 overflow-visible md:hidden">
             <HeroFoldersCarousel folders={HERO.folders} />
-          </div>
+          </RevealOnScroll>
         </div>
       </div>
     </section>

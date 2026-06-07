@@ -7,6 +7,7 @@
 
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
+  contentBrief: "app/content/project-brief.js",
   status: "step-1-approved",
   currentStep: 2,
   currentStepName: "Hero",
@@ -72,6 +73,7 @@ export const DESIGN_HANDOFF = {
   },
   definitive: [
     "brand name KeepItCool",
+    "copy intent in project-brief.js",
     "palette cream/ink/yellow gradient CTA",
     "Chillax + Outfit",
     "SDG colors scoped to 4 cards",

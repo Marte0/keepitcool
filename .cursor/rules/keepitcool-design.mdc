@@ -11,6 +11,7 @@ alwaysApply: false
 - Token: [`app/globals.css`](app/globals.css) (`@theme inline` + `:root` gradients)
 - Preview: [`app/styleguide/page.js`](app/styleguide/page.js) → `/styleguide`
 - Note: [`app/content/design-handoff.js`](app/content/design-handoff.js)
+- Brief contenuti: [`app/content/project-brief.js`](app/content/project-brief.js) — tono, messaggio, hint per sezione
 
 Pattern come portfolio: `@source` esplicito, componenti in `app/components/`, copy in `app/content/`.
 

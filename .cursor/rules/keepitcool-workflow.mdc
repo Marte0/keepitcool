@@ -33,7 +33,7 @@ Non implementare più step in bulk. Un micro-step per volta se serve.
 7. Team
 8. Final CTA
 
-Stato corrente: leggere sempre [`app/content/design-handoff.js`](app/content/design-handoff.js) prima di agire.
+Stato corrente: leggere sempre [`app/content/design-handoff.js`](app/content/design-handoff.js) prima di agire. Per copy/contesto prodotto leggere anche [`app/content/project-brief.js`](app/content/project-brief.js) prima di proporre o implementare una sezione.
 
 ## Handoff — aggiornare a fine step
 

@@ -304,6 +304,76 @@ export const LEARNING_GOALS = {
   ],
 };
 
+export const PARTNERS = {
+  titleBefore: "Partnership with the ",
+  titleHighlight: "energy sector",
+  logos: [
+    {
+      id: "aet",
+      name: "AET",
+      src: "/images/partners/aet.png",
+      href: "https://www.aet.ch",
+      tilt: -4,
+      mobileTilt: -2,
+      slot: "top-left",
+      floatDelay: 0,
+    },
+    {
+      id: "supsi",
+      name: "SUPSI",
+      src: "/images/partners/supsi.png",
+      href: "https://www.supsi.ch",
+      tilt: 3,
+      mobileTilt: 2,
+      slot: "top-center",
+      floatDelay: 1.5,
+    },
+    {
+      id: "ticino-energia",
+      name: "Ticino Energia",
+      src: "/images/partners/ticino-energia.png",
+      href: "https://www.ticinoenergia.ch",
+      tilt: 5,
+      mobileTilt: 3,
+      slot: "top-right",
+      floatDelay: 3,
+    },
+    {
+      id: "watt-about",
+      name: "WATT ABOUT",
+      src: "/images/partners/watt-about.png",
+      href: "https://wattabout.ch",
+      tilt: 4,
+      mobileTilt: -2,
+      slot: "bottom-left",
+      floatDelay: 4.5,
+    },
+    {
+      id: "dipartimento-territorio",
+      name: "Dipartimento del territorio",
+      src: "/images/partners/dipartimento-territorio.png",
+      href: "https://www4.ti.ch/dt/",
+      tilt: -6,
+      mobileTilt: -3,
+      slot: "bottom-right",
+      floatDelay: 2.25,
+    },
+  ],
+  funded: {
+    labelBefore: "Project ",
+    labelHighlight: "funded",
+    labelAfter: " by",
+    logo: {
+      name: "BRIDGE",
+      src: "/images/partners/bridge.png",
+      href: "https://www.bridge.ch",
+      tilt: 6.65,
+      mobileTilt: 0,
+      floatDelay: 0,
+    },
+  },
+};
+
 export const ABOUT = {
   eyebrow: "The problem",
   title: "When temperature drifts, quality follows.",

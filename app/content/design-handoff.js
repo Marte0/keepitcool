@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "step-4-approved",
-  currentStep: 5,
-  currentStepName: "Testimonials",
+  status: "step-6-approved",
+  currentStep: 7,
+  currentStepName: "Team",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -55,8 +55,15 @@ export const DESIGN_HANDOFF = {
     "Step 4b — SdgCard ×4: bg-sdg-* scoped, border-10 white, icon SDG public/images/sdg/, copy Figma placeholder",
     "Step 4b — griglia 2 col mobile / 4 col md+; tilt desktop −7°/−3.5°/+3.5°/+7°; hover lift solo @media (hover: hover)",
     "Step 4b — SDG corner radius: --sdg-radius-inner = outer − padding (1.5rem − 1.25rem); .sdg-card__media; SdgCardMock allineato",
+    "Step 6 — PartnersSection id=partners dopo Learning Goals; titolo highlight-yellow su «energy sector»; no body",
+    "Step 6 — 5 partner PNG RGBA: aet, SUPSI, ticino energia, WATT ABOUT, Dipartimento del territorio — public/images/partners/",
+    "Step 6 — scatter desktop (3+2) + mobile scatter; cream-light box, float + tilt, overlap leggero sul titolo",
+    "Step 6 — slot assoluti sul .reveal (non wrapper figlio); top-center via left calc(50% − metà box); PNG unoptimized",
+    "Step 6 — ogni box link esterno target=_blank (href in PARTNERS.sections.js)",
+    "Step 6 — PartnersFundedRow: «Project » + highlight «funded» + « by»; BRIDGE cream-light come partner; desktop row / mobile stack",
+    "Step 6 — RevealOnScroll delay 0–7; partner-float / partner-float-mobile; reduced-motion disabilita float",
   ],
-  next: "Step 5 — Testimonials: titoli Figma, sticky notes tilt, tag-student / tag-psychologist; un micro-step per volta",
+  next: "Step 7 — Team: titolo «But who are we», ritratti, tag-psychologist sui nomi; un micro-step per volta",
   blockers: [],
   fonts: {
     display: {

@@ -398,6 +398,18 @@ body {
   animation-delay: 0.95s;
 }
 
+.reveal-delay-5.is-visible .highlight-yellow::after {
+  animation-delay: 1.05s;
+}
+
+.reveal-delay-6.is-visible .highlight-yellow::after {
+  animation-delay: 1.15s;
+}
+
+.reveal-delay-7.is-visible .highlight-yellow::after {
+  animation-delay: 1.25s;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -443,6 +455,219 @@ body {
 }
 .reveal-delay-4 {
   transition-delay: 0.4s;
+}
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
+.reveal-delay-6 {
+  transition-delay: 0.6s;
+}
+.reveal-delay-7 {
+  transition-delay: 0.7s;
+}
+
+/*
+  Partners — floating logo boxes (scatter desktop + mobile).
+*/
+.partners-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(22rem, 18rem + 12vw, 38rem);
+}
+
+.partner-logo-box {
+  position: absolute;
+  z-index: 3;
+  width: clamp(7rem, 32vw, 15.5rem);
+}
+
+.partner-logo-box--funded {
+  position: static;
+  width: auto;
+}
+
+.partner-logo-box__float {
+  animation: partner-float 6s ease-in-out infinite;
+  animation-delay: var(--partner-float-delay, 0s);
+}
+
+.partner-logo-box__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(4.5rem, 20vw, 9.25rem);
+  padding: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+  background-color: var(--color-cream-light);
+  border-radius: 2.625rem;
+  box-shadow: var(--shadow-card);
+  transform: rotate(var(--partner-tilt-mobile, 0deg)) translateZ(0);
+  transform-origin: center center;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.partner-logo-box__inner--funded {
+  width: clamp(10rem, 40vw, 15rem);
+  height: clamp(5rem, 18vw, 7.5rem);
+  background-color: var(--color-cream-light);
+  border-radius: 1.875rem;
+}
+
+.partner-logo-box__link {
+  display: block;
+  cursor: pointer;
+}
+
+.partner-logo-box__img {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 85%;
+  max-height: clamp(2.5rem, 10vw, 4.5rem);
+  object-fit: contain;
+}
+
+.partner-logo-box__inner--funded .partner-logo-box__img {
+  max-height: clamp(2rem, 8vw, 3.5rem);
+}
+
+/* Mobile-first slot positions — overlap title slightly, no transform (conflicts with .reveal) */
+.partner-slot-top-left {
+  top: 14%;
+  left: 0;
+}
+
+.partner-slot-top-center {
+  top: 0%;
+  left: calc(50% - clamp(3.5rem, 16vw, 7.75rem));
+}
+
+.partner-slot-top-right {
+  top: 16%;
+  right: 0;
+}
+
+.partner-slot-bottom-left {
+  bottom: 10%;
+  left: 0;
+}
+
+.partner-slot-bottom-right {
+  bottom: 8%;
+  right: 0;
+}
+
+.partners-funded-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.partners-funded-row__label {
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+@keyframes partner-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.75rem, 0);
+  }
+}
+
+@keyframes partner-float-mobile {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.5rem, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .partners-stage {
+    min-height: clamp(28rem, 22rem + 12vw, 38rem);
+  }
+
+  .partner-logo-box {
+    width: clamp(12rem, 18vw, 15.5rem);
+  }
+
+  /* Desktop: overlap title slightly — boxes pulled toward center */
+  .partner-slot-top-left {
+    top: 18%;
+    left: 2%;
+    bottom: auto;
+    right: auto;
+  }
+
+  .partner-slot-top-center {
+    top: 2%;
+    left: calc(50% - clamp(6rem, 9vw, 7.75rem));
+    right: auto;
+    bottom: auto;
+  }
+
+  .partner-slot-top-right {
+    top: 20%;
+    right: 2%;
+    left: auto;
+    bottom: auto;
+  }
+
+  .partner-slot-bottom-left {
+    top: auto;
+    bottom: 12%;
+    left: 2%;
+    right: auto;
+  }
+
+  .partner-slot-bottom-right {
+    top: auto;
+    bottom: 10%;
+    right: 2%;
+    left: auto;
+  }
+
+  .partner-logo-box__inner {
+    height: 9.25rem;
+    transform: rotate(var(--partner-tilt, 0deg)) translateZ(0);
+  }
+
+  .partners-funded-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .partners-funded-row__box {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .partner-logo-box__float {
+    animation-name: partner-float-mobile;
+  }
+}
+
+@media (hover: hover) {
+  .partner-logo-box__inner:hover,
+  .partner-logo-box__inner:focus-visible {
+    transform: translateY(-6px) rotate(0deg);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.14));
+    z-index: 10;
+  }
 }
 
 /*
@@ -640,6 +865,16 @@ body {
   .sdg-card:focus-visible {
     transform: rotate(var(--sdg-tilt-mobile, var(--sdg-tilt, 0deg)));
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+
+  .partner-logo-box__float {
+    animation: none;
+  }
+
+  .partner-logo-box__inner:hover,
+  .partner-logo-box__inner:focus-visible {
+    transform: rotate(var(--partner-tilt-mobile, var(--partner-tilt, 0deg)));
+    filter: none;
   }
 
   .game-card-stack-item.is-active .game-card-stack-item-inner {

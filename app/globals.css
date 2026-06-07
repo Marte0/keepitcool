@@ -114,6 +114,13 @@
     #e4abe5 0%,
     #b86eb9 100%
   );
+
+  /* Hero folder PNG sizing (Figma 228×310) */
+  --hero-folder-max: 228px;
+  --hero-folder-page-inset: 2.5rem;
+  --hero-folder-overlap: 2.5rem;
+  --hero-folder-carousel-max: 252px;
+  --hero-folder-carousel-inset: 1rem;
 }
 
 @utility max-w-page {
@@ -279,6 +286,96 @@ body {
   transition-delay: 0.4s;
 }
 
+/*
+  Hero — folder lift (desktop hover + mobile carousel center).
+*/
+.hero-folder-img {
+  width: var(--hero-folder-w);
+  height: auto;
+}
+
+.hero-folder-row {
+  --hero-folder-w: min(
+    var(--hero-folder-max),
+    calc((100vw - var(--hero-folder-page-inset) + 4 * var(--hero-folder-overlap)) / 5)
+  );
+}
+
+.hero-folder-card {
+  transform: rotate(var(--folder-tilt, 0deg)) translateZ(0);
+  --hero-folder-shadow-active: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.18));
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-folder-card:hover,
+.hero-folder-card:focus-visible,
+.hero-folder-card.is-active {
+  transform: translateY(-22px) scale(1.08) rotate(0deg);
+  filter: var(--hero-folder-shadow-active);
+  z-index: 20;
+}
+
+.hero-folder-scroll-outer {
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/*
+  overflow-x: auto forces overflow-y to clip painted overflow (lift, scale, shadow).
+  Extra padding on the scrollport reserves room inside the clip edge.
+  Mobile carousel uses a tighter shadow via --hero-folder-shadow-active override below.
+*/
+.hero-folder-scroll {
+  --hero-folder-w: min(
+    var(--hero-folder-carousel-max),
+    calc(100vw - var(--hero-folder-carousel-inset))
+  );
+  --hero-folder-h: calc(var(--hero-folder-w) * 310 / 228);
+  --hero-folder-lift: 4rem;
+  --hero-folder-shadow-spread: 14px;
+  --hero-folder-pad: calc(var(--hero-folder-lift) + var(--hero-folder-shadow-spread));
+  --hero-folder-shadow-idle: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  --hero-folder-shadow-active: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: calc(var(--hero-folder-h) + var(--hero-folder-pad) * 2);
+  padding-block: var(--hero-folder-pad);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.hero-folder-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-folder-scroll-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: var(--hero-folder-h);
+}
+
+.hero-folder-scroll-item {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+.hero-folder-card-inner {
+  transform-origin: center center;
+}
+
+.hero-folder-scroll .hero-folder-card-inner:not(.is-active) {
+  filter: var(--hero-folder-shadow-idle);
+}
+
+.hero-folder-scroll .hero-folder-card-inner.is-active {
+  filter: var(--hero-folder-shadow-active);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -288,6 +385,13 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .hero-folder-card:hover,
+  .hero-folder-card:focus-visible,
+  .hero-folder-card.is-active {
+    transform: rotate(var(--folder-tilt, 0deg));
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
   }
 
   *,

@@ -28,12 +28,42 @@ export const SITE = {
 };
 
 export const HERO = {
-  eyebrow: "Temperature monitoring",
-  title: "Keep it cool.\nKeep it safe.",
+  title: "From energy literacy to a cooperative game",
   subtitle:
-    "A lightweight sensor and dashboard that watch your cold chain 24/7 — so you focus on your work, not on spoilage.",
-  primaryCta: { label: "Get early access", href: "#contact" },
-  secondaryCta: { label: "See how it works", href: "#how-it-works" },
+    "Helping young citizens explore the energy transition through play, strategy and collaboration",
+  cta: { label: "Join now", href: "#contact" },
+  folders: [
+    {
+      src: "/images/hero/folder-wind.png",
+      alt: "New wind turbine plant",
+      tilt: -3.62,
+      offsetY: 8,
+    },
+    {
+      src: "/images/hero/folder-lng.png",
+      alt: "LNG import terminals",
+      tilt: 3.43,
+      offsetY: -16,
+    },
+    {
+      src: "/images/hero/folder-nuclear.png",
+      alt: "Nuclear power site",
+      tilt: -5.42,
+      offsetY: 4,
+    },
+    {
+      src: "/images/hero/folder-awareness.png",
+      alt: "Bridging the public awareness gap",
+      tilt: 3.02,
+      offsetY: -16,
+    },
+    {
+      src: "/images/hero/folder-storage.png",
+      alt: "Energy storage system",
+      tilt: -2.3,
+      offsetY: 6,
+    },
+  ],
 };
 
 export const ABOUT = {

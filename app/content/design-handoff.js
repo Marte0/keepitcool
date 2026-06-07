@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "step-1-approved",
-  currentStep: 2,
-  currentStepName: "Hero",
+  status: "step-2-approved",
+  currentStep: 3,
+  currentStepName: "Game section",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -29,8 +29,16 @@ export const DESIGN_HANDOFF = {
     "Step 1 — CTA Get in touch → #contact; desktop in header, mobile solo nel drawer",
     "Step 1 — mobile: hamburger in cerchio nav-pill; drawer cream-light/95 + blur",
     "Step 1 — scroll hash smooth, scroll-padding-top 5rem, no hide-on-scroll",
+    "Step 2 — Hero: layout A centrato (Figma), titolo Chillax uppercase, sottotitolo Outfit",
+    "Step 2 — CTA Join now (btn-cta) → #contact; no eyebrow, no seconda CTA",
+    "Step 2 — 5 cartelline energy topics PNG (public/images/hero/), overlap/tilt desktop",
+    "Step 2 — hover desktop: lift pronunciato (−22px, scale 1.08, straighten, ombra profonda)",
+    "Step 2 — mobile (< md / 768px): carousel snap + auto-scroll 3.5s, .is-active al centro, pausa touch/wheel; da md fila overlapping (iPad incluso)",
+    "Step 2 — sizing cartelle: row max 228px Figma, shrink quando 5 non entrano; carousel max 252px, inset 1rem (full-bleed)",
+    "Step 2 — carousel: HeroFoldersCarousel client, spacers snap, ombre compatte mobile (no clip shadow)",
+    "Step 2 — rimosso mock dashboard legacy (frost/mist/ice); copy HERO in sections.js",
   ],
-  next: "Step 2 — Hero (titolo Figma, sottotitolo, CTA Join now, card energy topics)",
+  next: "Step 3 — Game section: titolo cooperative game, card TALK/PLAN/PLAY (game-card-*), highlight-yellow, asset Figma",
   blockers: [],
   fonts: {
     display: {

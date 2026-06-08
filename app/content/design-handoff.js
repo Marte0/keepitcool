@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "redesign-phase-2b-complete",
-  currentStep: 6,
-  currentStepName: "Sito finito (Phase 2c)",
+  status: "phase-2c-complete",
+  currentStep: 7,
+  currentStepName: "Landing completa (Phase 2c)",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -101,11 +101,25 @@ export const DESIGN_HANDOFF = {
     "Phase 2b Testimonials — desktop: più spazio studenti sx↔dx; esperti leggermente separati",
     "Phase 2b Testimonials — copy pill: Student + Elena Battipede (maiuscole); rimosso lowercase forzato su tag-line1",
     "Phase 2b Partners — hover desktop: overlay bianco rgba(255,255,255,0.82) + «website →» ink; lift invariato",
+    "Phase 2c — Brief collega approvato: cooperative serious game, audience primaria educatori/scuole 15–18, tono chiaro/confident/non accademico, 5 messaggi chiave (balance, cooperation, play, no eco-anxiety, research-tested), EN primary, CTAs Get in touch / Bring to school / Partner",
+    "Phase 2c — project-brief.js aggiornato con one-liner, short/long description, positioning, recognition BRIDGE + iF 2026, stakeholder rules",
+    "Phase 2c — Favicon: app/icon.png 32×32 (K giallo, asset Frame_1208 collega); apple-icon.png allineato",
+    "Phase 2c — SITE copy approvato: tagline «Energy literacy as a cooperative game»; description cooperative game (no serious) / young citizens / decisions, consequences, shared strategy; FOOTER.tagline allineato",
+    "Phase 2c — OG/Twitter image: app/opengraph-image.png + twitter-image.png da logo-footer.png (1600×855); layout metadata da SITE",
+    "Phase 2c — SEO: app/robots.js allow all + sitemap ref; layout alternates.canonical / → https://keepitcool.ch; lang en già ok",
+    "Phase 2c — Hero copy: title «Understand the energy transition, together»; subtitle two players/trade-offs (no em dash); no CTA in Hero (Get in touch resta in navbar + Contact)",
+    "Phase 2c — Game copy approvato così com'è: title cooperative game about energy; body net zero/shared decisions; TALK/PLAN/PLAY card bodies invariati",
+    "Phase 2c — Energy + Learning Goals approvati così com'è: title future; body centre climate transition; 4 SDG card bodies invariati",
+    "Phase 2c — Testimonials approvati così com'è: titoli target/experts; 3 quote studenti + 2 esperti invariati",
+    "Phase 2c — Partners approvati così com'è: title energy sector; funded row Project funded by; linkLabel website →",
+    "Phase 2c — Team copy approvato B2: interaction designers, soft spot education, hands-on games/visual tools/workshops, prototype fast; nomi ritratti capitalizzati; no istituzioni nel body",
+    "Phase 2c — Contact body B1: teacher/school/partner/curious; demos, workshops, partnerships; titolo «Want to learn more?» e CTA «Get in touch» invariati; Footer tagline = SITE",
+    "Phase 2c — Approvazione finale: copy + metadata + favicon K giallo; Hero senza CTA; committato e pushato su main",
   ],
   next: [
-    "Phase 2c — Brief collega: riassunto progetto, favicon, metadata/OG, copy finale sezione per sezione (2 opzioni: ok o 3 varianti)",
-    "Phase 2c — Domande una alla volta: navbar, CTA colori, piccolezze tecniche, poi ogni blocco testi in sections.js",
-    "Phase 2c — Cleanup opzionale: /contact-preview, componenti legacy (About, Features, ContactCta, HowItWorks)",
+    "Opzionale — Cleanup: /contact-preview, blocchi legacy in sections.js (About, Features, HowItWorks, CTA)",
+    "Opzionale — Domande visive: navbar, colori CTA",
+    "Opzionale — Versione IT per stakeholder locali",
   ],
   blockers: [],
   fonts: {
@@ -161,7 +175,7 @@ export const DESIGN_HANDOFF = {
     "SDG colors scoped to 4 cards",
     "section order from Figma (Testimonials tra Learning Goals e Partners)",
   ],
-  indicative: ["spacing", "exact font sizes", "copy placeholder", "hero assets", "favicon", "final metadata"],
+  indicative: ["spacing", "exact font sizes", "hero assets"],
 };
 
 export const SDG_COLOR_RULE =

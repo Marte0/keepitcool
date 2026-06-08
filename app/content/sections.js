@@ -20,18 +20,17 @@ export const SECTION_CHECKLIST = [
 
 export const SITE = {
   name: "KeepItCool",
-  tagline: "A cooperative serious game for energy literacy and the energy transition.",
+  tagline: "Energy literacy as a cooperative game",
   description:
-    "KeepItCool turns the complexity of the energy transition into a cooperative game where young people learn by making decisions, solving challenges and experiencing the consequences of their choices.",
+    "A cooperative game that helps young citizens understand the energy transition through decisions, consequences and shared strategy.",
   url: "https://keepitcool.ch",
   email: "info@keepitcool.ch",
 };
 
 export const HERO = {
-  title: "From energy literacy to a cooperative game",
+  title: "Understand the energy transition, together",
   subtitle:
-    "Helping young citizens explore the energy transition through play, strategy and collaboration",
-  cta: { label: "Join now", href: "#contact" },
+    "Two players, one nation, countless trade-offs. Learn how energy systems work by making decisions together.",
   folders: [
     {
       src: "/images/hero/folder-wind.png",
@@ -441,7 +440,8 @@ export const PARTNERS = {
 
 export const TEAM = {
   title: "But who are we?",
-  body: "We are a small team of designers and researchers building KeepItCool — a cooperative game that helps young people explore the energy transition through play, strategy and shared decisions. We work with educators and energy partners to turn complex topics into something teenagers can actually engage with.",
+  body:
+    "We are interaction designers with a soft spot for education. We have worked on projects that turn learning into something hands-on: games, visual tools and workshops where students are part of the process, not just the audience. We like to prototype fast, listen carefully and keep improving until an idea actually works in practice.",
   actionLabels: {
     portfolio: "portfolio →",
     mail: "mail →",
@@ -449,7 +449,7 @@ export const TEAM = {
   members: [
     {
       id: "matteo",
-      name: "Matteo dell'agostino",
+      name: "Matteo Dell'Agostino",
       src: "/images/team/matteo.png",
       width: 768,
       height: 1024,
@@ -461,7 +461,7 @@ export const TEAM = {
     },
     {
       id: "marta",
-      name: "marta piatti",
+      name: "Marta Piatti",
       src: "/images/team/marta.png",
       width: 768,
       height: 1024,
@@ -542,7 +542,7 @@ export const CTA = {
 export const CONTACT = {
   title: "Want to learn more?",
   body:
-    "KeepItCool is a cooperative serious game that helps teenagers understand the energy transition through play — not lectures. If you're an educator, school partner, or investor exploring pilots, partnerships, or demos, we'd love to hear from you.",
+    "Whether you are a teacher, a school, an energy partner or simply curious about the project, we would love to hear from you. Reach out for demos, workshops, partnerships or just a conversation.",
   cta: { label: "Get in touch", href: "mailto:info@keepitcool.ch" },
   email: "info@keepitcool.ch",
   emailDirectLabel: "Or email us directly",
@@ -569,7 +569,7 @@ export const FOOTER = {
   logoSrc: "/images/logo-footer.png",
   logoWidth: 1024,
   logoHeight: 547,
-  tagline: "A cooperative serious game for energy literacy and the energy transition.",
+  tagline: "Energy literacy as a cooperative game",
   email: "info@keepitcool.ch",
   nav: [
     { label: "How it works", href: "#how-it-works" },

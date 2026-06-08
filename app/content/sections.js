@@ -175,8 +175,8 @@ export const GAME = {
           height: 166,
           displayWidth: 160,
           tilt: 4,
-          offsetX: 118,
-          offsetY: -72,
+          offsetX: 125,
+          offsetY: -145,
         },
         {
           slot: "mid-left",
@@ -313,7 +313,7 @@ export const TESTIMONIALS = {
       quote:
         "It made me realize that energy decisions are connected. Every choice affects the whole system.",
       tagClass: "tag-student",
-      tagLine1: "student",
+      tagLine1: "Student",
       tagLine2: "17 years old",
       tagAlign: "left",
       tilt: 6.06,
@@ -324,7 +324,7 @@ export const TESTIMONIALS = {
       quote:
         "The game pushed us to communicate and build a strategy together, instead of just playing individually.",
       tagClass: "tag-student-teal",
-      tagLine1: "student",
+      tagLine1: "Student",
       tagLine2: "16 years old",
       tagAlign: "left",
       tilt: -7.32,
@@ -335,7 +335,7 @@ export const TESTIMONIALS = {
       quote:
         "By the end of the game, I realized I had started to understand the trade-offs behind the energy system: every choice had benefits, costs and consequences for the whole nation.",
       tagClass: "tag-student-play",
-      tagLine1: "student",
+      tagLine1: "Student",
       tagLine2: "16 years old",
       tagAlign: "left",
       tilt: -2.09,
@@ -348,7 +348,7 @@ export const TESTIMONIALS = {
       quote:
         "It successfully combines education and entertainment, turning a complex and potentially anxiety-inducing topic into a structured, collaborative challenge.",
       tagClass: "tag-psychologist",
-      tagLine1: "Elena battipede",
+      tagLine1: "Elena Battipede",
       tagLine2: "Educational Researcher",
       tagAlign: "left",
       tilt: -7.28,
@@ -371,6 +371,7 @@ export const TESTIMONIALS = {
 export const PARTNERS = {
   titleBefore: "Partnership with the ",
   titleHighlight: "energy sector",
+  linkLabel: "website →",
   logos: [
     {
       id: "aet",

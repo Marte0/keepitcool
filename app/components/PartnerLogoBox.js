@@ -1,5 +1,6 @@
 import Image from "next/image";
 import RevealOnScroll from "./RevealOnScroll";
+import { PARTNERS } from "../content/sections";
 
 export default function PartnerLogoBox({
   logo,
@@ -7,6 +8,7 @@ export default function PartnerLogoBox({
   variant = "partner",
   width = 400,
   height = 400,
+  linkLabel = PARTNERS.linkLabel,
 }) {
   const isFunded = variant === "funded";
   const slotClass = isFunded ? "partner-slot-funded" : `partner-slot-${logo.slot}`;
@@ -35,6 +37,11 @@ export default function PartnerLogoBox({
             isFunded ? "(max-width: 768px) 12rem, 14rem" : "(max-width: 768px) 8rem, 12rem"
           }
         />
+        {logo.href ? (
+          <span className="partner-logo-box__hint" aria-hidden>
+            {linkLabel}
+          </span>
+        ) : null}
       </div>
     </div>
   );

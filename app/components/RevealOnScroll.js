@@ -22,7 +22,7 @@ export default function RevealOnScroll({ children, className = "", delay = 0 }) 
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -5% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -2% 0px" }
     );
 
     observer.observe(el);

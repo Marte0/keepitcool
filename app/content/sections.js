@@ -20,11 +20,11 @@ export const SECTION_CHECKLIST = [
 
 export const SITE = {
   name: "KeepItCool",
-  tagline: "Smart cooling for what matters.",
+  tagline: "A cooperative serious game for energy literacy and the energy transition.",
   description:
-    "KeepItCool monitors temperature in real time and keeps your products in the safe zone — simple setup, clear alerts, peace of mind.",
-  url: "https://keepitcool.app",
-  email: "hello@keepitcool.app",
+    "KeepItCool turns the complexity of the energy transition into a cooperative game where young people learn by making decisions, solving challenges and experiencing the consequences of their choices.",
+  url: "https://keepitcool.ch",
+  email: "info@keepitcool.ch",
 };
 
 export const HERO = {
@@ -377,7 +377,10 @@ export const PARTNERS = {
 export const TEAM = {
   title: "But who are we?",
   body: "We are a small team of designers and researchers building KeepItCool — a cooperative game that helps young people explore the energy transition through play, strategy and shared decisions. We work with educators and energy partners to turn complex topics into something teenagers can actually engage with.",
-  portfolioHoverLabel: "Go to portfolio →",
+  actionLabels: {
+    portfolio: "portfolio →",
+    mail: "mail →",
+  },
   members: [
     {
       id: "matteo",
@@ -386,8 +389,8 @@ export const TEAM = {
       width: 768,
       height: 1024,
       slot: "left",
-      href: "https://marte.industries",
-      linkLabel: "marte.industries",
+      portfolioHref: "https://marte.industries",
+      email: "matteodellagostino@gmail.com",
       tilt: -3,
       mobileTilt: -2,
     },
@@ -398,8 +401,8 @@ export const TEAM = {
       width: 768,
       height: 1024,
       slot: "right",
-      href: "https://instagram.com/marta.indd",
-      linkLabel: "marta.indd",
+      portfolioHref: "https://instagram.com/marta.indd",
+      email: "martapiaatti@gmail.com",
       tilt: 3,
       mobileTilt: 2,
     },
@@ -470,10 +473,44 @@ export const CTA = {
   placeholder: "you@company.com",
 };
 
+/** Step 8 — Contact section (preview variants A/B/C; final picks one). */
+export const CONTACT = {
+  title: "Want to learn more?",
+  body:
+    "KeepItCool is a cooperative serious game that helps teenagers understand the energy transition through play — not lectures. If you're an educator, school partner, or investor exploring pilots, partnerships, or demos, we'd love to hear from you.",
+  cta: { label: "Get in touch", href: "mailto:info@keepitcool.ch" },
+  email: "info@keepitcool.ch",
+  emailDirectLabel: "Or email us directly",
+  mailtoSubject: "KeepItCool — Inquiry",
+  compose: {
+    emailLabel: "Your email",
+    messageLabel: "Message",
+    emailPlaceholder: "you@school.ch",
+    messagePlaceholder: "Hi — I'm interested in learning more about KeepItCool for...",
+    submitLabel: "Send message",
+  },
+  topics: [
+    { id: "renewable", label: "Renewable energy" },
+    { id: "smart-grid", label: "Smart grids" },
+    { id: "nuclear", label: "Nuclear energy" },
+    { id: "storage", label: "Energy storage" },
+    { id: "electrification", label: "Electrification" },
+    { id: "carbon", label: "Carbon reduction" },
+  ],
+};
+
 export const FOOTER = {
-  tagline: "Smart cooling for what matters.",
-  links: [
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
+  brandDisplay: "KEEP IT COOL",
+  logoSrc: "/images/logo-footer.png",
+  logoWidth: 1024,
+  logoHeight: 547,
+  tagline: "A cooperative serious game for energy literacy and the energy transition.",
+  email: "info@keepitcool.ch",
+  nav: [
+    { label: "How it works", href: "#how-it-works" },
+    { label: "Approach", href: "#approach" },
+    { label: "Partners", href: "#partners" },
+    { label: "About us", href: "#about" },
+    { label: "Contact", href: "#contact" },
   ],
 };

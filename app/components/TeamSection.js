@@ -5,6 +5,7 @@ import { TEAM } from "../content/sections";
 export default function TeamSection() {
   return (
     <section
+      id="about"
       className="relative bg-cream"
       style={{
         paddingBottom: "var(--section-py)",
@@ -23,7 +24,7 @@ export default function TeamSection() {
             <TeamMemberPortrait
               key={member.id}
               member={member}
-              portfolioHoverLabel={TEAM.portfolioHoverLabel}
+              actionLabels={TEAM.actionLabels}
               delay={index + 1}
               slotClass={`team-portrait--${member.slot}`}
             />

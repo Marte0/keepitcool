@@ -4,10 +4,7 @@ import EnergySection from "../components/EnergySection";
 import LearningGoalsSection from "../components/LearningGoalsSection";
 import PartnersSection from "../components/PartnersSection";
 import TeamSection from "../components/TeamSection";
-import About from "../components/About";
-import Features from "../components/Features";
-import HowItWorks from "../components/HowItWorks";
-import ContactCta from "../components/ContactCta";
+import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -19,10 +16,7 @@ export default function Home() {
       <LearningGoalsSection />
       <PartnersSection />
       <TeamSection />
-      <About />
-      <Features />
-      <HowItWorks />
-      <ContactCta />
+      <ContactSection />
       <Footer />
     </main>
   );

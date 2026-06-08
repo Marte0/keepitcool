@@ -688,20 +688,14 @@ body {
   width: min(100%, 20rem);
 }
 
-.team-portrait__link {
+.team-portrait__interactive {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  text-decoration: none;
-  color: inherit;
 }
 
-.team-portrait__link:focus-visible {
-  outline: none;
-}
-
-.team-portrait__link:focus-visible .team-portrait__card {
+.team-portrait__interactive:focus-within .team-portrait__card {
   outline: 2px solid var(--color-ink, #2c2c2c);
   outline-offset: 4px;
 }
@@ -748,10 +742,32 @@ body {
   pointer-events: none;
 }
 
-.team-portrait__overlay-label {
+.team-portrait__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.team-portrait__action {
+  font-family: var(--font-body);
+  font-size: var(--text-ui);
+  font-weight: 400;
   color: var(--color-cream, #faf6ed);
-  text-align: center;
-  padding: 0 1rem;
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+
+.team-portrait__action:hover,
+.team-portrait__action:focus-visible {
+  color: var(--color-cream-light, #fcf4e7);
+  transform: translateX(2px);
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .team-portrait__link-hint {
@@ -759,8 +775,13 @@ body {
   margin-top: 0.75rem;
 }
 
-.team-portrait__link:focus-visible .team-portrait__overlay {
-  opacity: 1;
+.team-portrait__link-hint .team-portrait__action {
+  color: var(--color-ink-muted, #434343);
+}
+
+.team-portrait__link-hint .team-portrait__action:hover,
+.team-portrait__link-hint .team-portrait__action:focus-visible {
+  color: var(--color-ink, #2c2c2c);
 }
 
 @media (min-width: 768px) {
@@ -797,27 +818,28 @@ body {
 }
 
 @media (hover: hover) {
-  .team-portrait__link:hover,
-  .team-portrait__link:focus-visible {
+  .team-portrait__interactive:hover,
+  .team-portrait__interactive:focus-within {
     position: relative;
     z-index: 10;
   }
 
-  .team-portrait__link:hover .team-portrait__card,
-  .team-portrait__link:focus-visible .team-portrait__card {
+  .team-portrait__interactive:hover .team-portrait__card,
+  .team-portrait__interactive:focus-within .team-portrait__card {
     transform: translateY(-6px) rotate(0deg) scale(1.04);
     filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.14));
   }
 
-  .team-portrait__link:hover .team-portrait__overlay,
-  .team-portrait__link:focus-visible .team-portrait__overlay {
+  .team-portrait__interactive:hover .team-portrait__overlay,
+  .team-portrait__interactive:focus-within .team-portrait__overlay {
     opacity: 1;
+    pointer-events: auto;
   }
 }
 
 @media (max-width: 767px), (hover: none) {
   .team-portrait__link-hint {
-    display: block;
+    display: flex;
   }
 }
 
@@ -983,6 +1005,168 @@ body {
   filter: var(--hero-folder-shadow-active);
 }
 
+/*
+  Contact section — preview variants (Step 8).
+*/
+.contact-compose-card {
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+  box-shadow: var(--shadow-card);
+}
+
+.contact-compose-input {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, var(--color-cream-light) 80%, transparent);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-ink);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact-compose-input::placeholder {
+  color: color-mix(in srgb, var(--color-ink-muted) 55%, transparent);
+}
+
+.contact-compose-input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.contact-compose-textarea {
+  min-height: 7rem;
+  line-height: 1.5;
+}
+
+.contact-pulse-orbit-stage {
+  position: relative;
+  min-height: clamp(7rem, 5rem + 8vw, 11rem);
+  margin-bottom: 0.5rem;
+}
+
+.contact-pulse-orbit {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+}
+
+.contact-pulse-orbit__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, #fad724 45%, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.contact-pulse-topic {
+  position: absolute;
+  z-index: 1;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--color-cream-light) 88%, transparent);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  cursor: default;
+  animation: contact-topic-float 36s ease-in-out infinite;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.contact-pulse-orbit.is-paused .contact-pulse-topic {
+  animation-play-state: paused;
+}
+
+.contact-pulse-topic__label {
+  white-space: nowrap;
+}
+
+.contact-pulse-topic__tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.5rem;
+  background: var(--color-ink);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  color: var(--color-cream-light);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.contact-pulse-cta-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.contact-pulse-cta-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -0.35rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, #fad724 35%, transparent);
+  opacity: 0;
+  animation: contact-cta-pulse 2.4s ease-out 0.8s 1;
+  pointer-events: none;
+}
+
+.contact-pulse-cta {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-pulse-cta:hover,
+.contact-pulse-cta:focus-visible {
+  transform: scale(1.02);
+}
+
+@keyframes contact-topic-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(6px, -8px, 0);
+  }
+  50% {
+    transform: translate3d(-4px, 4px, 0);
+  }
+  75% {
+    transform: translate3d(8px, 6px, 0);
+  }
+}
+
+@keyframes contact-cta-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@media (max-width: 639px) {
+  .contact-pulse-topic {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .contact-pulse-orbit-stage {
+    min-height: 5.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1033,14 +1217,14 @@ body {
     transition: none;
   }
 
-  .team-portrait__link:hover .team-portrait__card,
-  .team-portrait__link:focus-visible .team-portrait__card {
+  .team-portrait__interactive:hover .team-portrait__card,
+  .team-portrait__interactive:focus-within .team-portrait__card {
     transform: rotate(var(--team-tilt-mobile, var(--team-tilt, 0deg)));
     filter: none;
   }
 
-  .team-portrait__link:hover .team-portrait__overlay,
-  .team-portrait__link:focus-visible .team-portrait__overlay {
+  .team-portrait__interactive:hover .team-portrait__overlay,
+  .team-portrait__interactive:focus-within .team-portrait__overlay {
     opacity: 1;
   }
 
@@ -1056,6 +1240,15 @@ body {
 
   .game-card-asset {
     transition: none;
+  }
+
+  .contact-pulse-topic {
+    animation: none;
+  }
+
+  .contact-pulse-cta-wrap::before {
+    animation: none;
+    opacity: 0;
   }
 
   *,

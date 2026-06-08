@@ -1,21 +1,28 @@
 import Image from "next/image";
 import RevealOnScroll from "./RevealOnScroll";
 
-export default function TeamMemberPortrait({
-  member,
-  portfolioHoverLabel,
-  delay = 0,
-  slotClass,
-}) {
+function TeamPortraitActions({ member, labels, className = "" }) {
   return (
-    <RevealOnScroll delay={delay} className={`team-portrait ${slotClass}`}>
+    <div className={`team-portrait__actions ${className}`.trim()}>
       <a
-        href={member.href}
+        href={member.portfolioHref}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Visit ${member.name} portfolio`}
-        className="team-portrait__link"
+        className="team-portrait__action"
       >
+        {labels.portfolio}
+      </a>
+      <a href={`mailto:${member.email}`} className="team-portrait__action">
+        {labels.mail}
+      </a>
+    </div>
+  );
+}
+
+export default function TeamMemberPortrait({ member, actionLabels, delay = 0, slotClass }) {
+  return (
+    <RevealOnScroll delay={delay} className={`team-portrait ${slotClass}`}>
+      <div className="team-portrait__interactive">
         <div
           className="team-portrait__card"
           style={{
@@ -35,17 +42,18 @@ export default function TeamMemberPortrait({
               className="team-portrait__img size-full object-cover"
               sizes="(max-width: 768px) 85vw, 26rem"
             />
-            <span className="team-portrait__overlay" aria-hidden>
-              <span className="team-portrait__overlay-label font-body text-ui font-normal">
-                {portfolioHoverLabel}
-              </span>
-            </span>
+            <div className="team-portrait__overlay">
+              <TeamPortraitActions member={member} labels={actionLabels} />
+            </div>
           </div>
         </div>
-        <span className="team-portrait__link-hint font-body text-ui text-ink-muted">
-          {member.linkLabel} →
-        </span>
-      </a>
+
+        <TeamPortraitActions
+          member={member}
+          labels={actionLabels}
+          className="team-portrait__link-hint"
+        />
+      </div>
     </RevealOnScroll>
   );
 }

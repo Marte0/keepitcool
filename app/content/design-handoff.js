@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "step-6-approved",
-  currentStep: 7,
-  currentStepName: "Team",
+  status: "step-7-approved",
+  currentStep: 8,
+  currentStepName: "Contact",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -62,9 +62,23 @@ export const DESIGN_HANDOFF = {
     "Step 6 — ogni box link esterno target=_blank (href in PARTNERS.sections.js)",
     "Step 6 — PartnersFundedRow: «Project » + highlight «funded» + « by»; BRIDGE cream-light come partner; desktop row / mobile stack",
     "Step 6 — RevealOnScroll delay 0–7; partner-float / partner-float-mobile; reduced-motion disabilita float",
+    "Cross-section — gap titolo→body adiacente: mt-6 (24px) su Hero, Game, Energy (era mt-10); Team body sotto foto — non applicato al titolo→ritratti",
+    "Step 7 — TeamSection dopo Partners, prima legacy About; no id sezione (nav About resta #about legacy)",
+    "Step 7 — ordine: titolo → ritratti → body; titolo «But who are we?» text-section text-ink-muted, no highlight",
+    "Step 7 — body placeholder stakeholder centrato text-lead max-w 38rem; copy in TEAM.sections.js",
+    "Step 7 — 2 ritratti PNG user public/images/team/{matteo,marta}.png; tag-psychologist sui nomi",
+    "Step 7 — tag + foto in .team-portrait__card: tilt e hover sulla card intera (nome si inclina/ingrandisce con foto)",
+    "Step 7 — tilt −3°/+3° desktop, −2°/+2° mobile; overlap leggero desktop (left più bassa)",
+    "Step 7 — hover desktop: overlay ink, label «Go to portfolio →» font-body regular; straighten + lift −6px + scale 1.04",
+    "Step 7 — link esterni target=_blank: Matteo → marte.industries; Marta → instagram.com/marta.indd",
+    "Step 7 — mobile: link hint sotto foto (linkLabel →); overlay solo hover/focus desktop",
+    "Step 7 — RevealOnScroll delay 0 titolo, 1–2 ritratti, 3 body",
   ],
-  next: "Step 7 — Team: titolo «But who are we», ritratti, tag-psychologist sui nomi; un micro-step per volta",
-  blockers: [],
+  next:
+    "Step 8 — Contact: NON seguire Figma final CTA; proporre 3 layout distinti (libertà creativa). Vincoli: CTA btn-cta (gradient giallo) → mailto:info@keepitcool.ch (bozza mail); breve paragrafo placeholder sul perché contattarci. Sostituire legacy ContactCta (id=#contact). Dopo Team, rimuovere blocchi legacy About/Features/HowItWorks quando contact approvato.",
+  blockers: [
+    "Figma node final CTA (89:3703) non vincolante — utente non soddisfatto del design Figma contatti",
+  ],
   fonts: {
     display: {
       family: "Chillax Bold",

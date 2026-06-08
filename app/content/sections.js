@@ -374,6 +374,38 @@ export const PARTNERS = {
   },
 };
 
+export const TEAM = {
+  title: "But who are we?",
+  body: "We are a small team of designers and researchers building KeepItCool — a cooperative game that helps young people explore the energy transition through play, strategy and shared decisions. We work with educators and energy partners to turn complex topics into something teenagers can actually engage with.",
+  portfolioHoverLabel: "Go to portfolio →",
+  members: [
+    {
+      id: "matteo",
+      name: "Matteo dell'agostino",
+      src: "/images/team/matteo.png",
+      width: 768,
+      height: 1024,
+      slot: "left",
+      href: "https://marte.industries",
+      linkLabel: "marte.industries",
+      tilt: -3,
+      mobileTilt: -2,
+    },
+    {
+      id: "marta",
+      name: "marta piatti",
+      src: "/images/team/marta.png",
+      width: 768,
+      height: 1024,
+      slot: "right",
+      href: "https://instagram.com/marta.indd",
+      linkLabel: "marta.indd",
+      tilt: 3,
+      mobileTilt: 2,
+    },
+  ],
+};
+
 export const ABOUT = {
   eyebrow: "The problem",
   title: "When temperature drifts, quality follows.",

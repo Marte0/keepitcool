@@ -24,7 +24,7 @@ export default function EnergySection() {
             <EnergyTitle />
           </RevealOnScroll>
           <RevealOnScroll delay={1}>
-            <p className="mt-10 font-body text-lead text-ink">{ENERGY.body}</p>
+            <p className="mt-6 font-body text-lead text-ink">{ENERGY.body}</p>
           </RevealOnScroll>
         </div>
 

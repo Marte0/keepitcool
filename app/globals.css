@@ -537,7 +537,7 @@ body {
 
 /* Mobile-first slot positions — overlap title slightly, no transform (conflicts with .reveal) */
 .partner-slot-top-left {
-  top: 14%;
+  top: 8%;
   left: 0;
 }
 
@@ -547,7 +547,7 @@ body {
 }
 
 .partner-slot-top-right {
-  top: 16%;
+  top: 10%;
   right: 0;
 }
 
@@ -671,8 +671,159 @@ body {
 }
 
 /*
-  Energy — photo fan (desktop hover) + 2×2 grid (mobile).
+  Team — portraits + tag-psychologist names.
 */
+.team-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  max-width: 67.5rem;
+}
+
+.team-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 20rem);
+}
+
+.team-portrait__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.team-portrait__link:focus-visible {
+  outline: none;
+}
+
+.team-portrait__link:focus-visible .team-portrait__card {
+  outline: 2px solid var(--color-ink, #2c2c2c);
+  outline-offset: 4px;
+}
+
+.team-portrait__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform: rotate(var(--team-tilt-mobile, 0deg)) translateZ(0);
+  transform-origin: center center;
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.team-portrait__tag {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -0.85rem;
+}
+
+.team-portrait__frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 417 / 476;
+}
+
+.team-portrait__img {
+  display: block;
+}
+
+.team-portrait__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  background: rgba(44, 44, 44, 0.72);
+  opacity: 0;
+  transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.team-portrait__overlay-label {
+  color: var(--color-cream, #faf6ed);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.team-portrait__link-hint {
+  display: none;
+  margin-top: 0.75rem;
+}
+
+.team-portrait__link:focus-visible .team-portrait__overlay {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .team-stage {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    min-height: clamp(24rem, 20rem + 10vw, 32rem);
+  }
+
+  .team-portrait {
+    width: clamp(16rem, 22vw, 26rem);
+  }
+
+  .team-portrait__card {
+    transform: rotate(var(--team-tilt, var(--team-tilt-mobile, 0deg))) translateZ(0);
+  }
+
+  .team-portrait--left {
+    margin-top: clamp(2.5rem, 1.5rem + 2vw, 3.75rem);
+    margin-right: clamp(-1.5rem, -2vw, -0.25rem);
+    z-index: 1;
+  }
+
+  .team-portrait--right {
+    margin-left: clamp(-1.5rem, -2vw, -0.25rem);
+    z-index: 2;
+  }
+
+  .team-portrait--right .team-portrait__frame {
+    aspect-ratio: 451 / 502;
+  }
+}
+
+@media (hover: hover) {
+  .team-portrait__link:hover,
+  .team-portrait__link:focus-visible {
+    position: relative;
+    z-index: 10;
+  }
+
+  .team-portrait__link:hover .team-portrait__card,
+  .team-portrait__link:focus-visible .team-portrait__card {
+    transform: translateY(-6px) rotate(0deg) scale(1.04);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.14));
+  }
+
+  .team-portrait__link:hover .team-portrait__overlay,
+  .team-portrait__link:focus-visible .team-portrait__overlay {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px), (hover: none) {
+  .team-portrait__link-hint {
+    display: block;
+  }
+}
+
+/*
+  Energy — photo fan (desktop hover) + 2×2 grid (mobile).
+ */
 .energy-photo-img {
   width: var(--energy-photo-w, var(--energy-photo-max));
   height: var(--energy-photo-w, var(--energy-photo-max));
@@ -875,6 +1026,22 @@ body {
   .partner-logo-box__inner:focus-visible {
     transform: rotate(var(--partner-tilt-mobile, var(--partner-tilt, 0deg)));
     filter: none;
+  }
+
+  .team-portrait__card,
+  .team-portrait__overlay {
+    transition: none;
+  }
+
+  .team-portrait__link:hover .team-portrait__card,
+  .team-portrait__link:focus-visible .team-portrait__card {
+    transform: rotate(var(--team-tilt-mobile, var(--team-tilt, 0deg)));
+    filter: none;
+  }
+
+  .team-portrait__link:hover .team-portrait__overlay,
+  .team-portrait__link:focus-visible .team-portrait__overlay {
+    opacity: 1;
   }
 
   .game-card-stack-item.is-active .game-card-stack-item-inner {

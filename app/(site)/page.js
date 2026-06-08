@@ -3,6 +3,7 @@ import GameSection from "../components/GameSection";
 import EnergySection from "../components/EnergySection";
 import LearningGoalsSection from "../components/LearningGoalsSection";
 import PartnersSection from "../components/PartnersSection";
+import TeamSection from "../components/TeamSection";
 import About from "../components/About";
 import Features from "../components/Features";
 import HowItWorks from "../components/HowItWorks";
@@ -17,6 +18,7 @@ export default function Home() {
       <EnergySection />
       <LearningGoalsSection />
       <PartnersSection />
+      <TeamSection />
       <About />
       <Features />
       <HowItWorks />

@@ -33,10 +33,10 @@ export default function GameSection() {
                 <GameTitle />
               </RevealOnScroll>
               <RevealOnScroll delay={1} className="md:hidden">
-                <p className="mt-10 font-body text-lead text-ink">{GAME.body}</p>
+                <p className="mt-6 font-body text-lead text-ink">{GAME.body}</p>
               </RevealOnScroll>
               <RevealOnScroll delay={4} className="hidden md:block">
-                <p className="mt-10 font-body text-lead text-ink">{GAME.body}</p>
+                <p className="mt-6 font-body text-lead text-ink">{GAME.body}</p>
               </RevealOnScroll>
             </div>
 

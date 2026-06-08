@@ -18,7 +18,7 @@ export default function Hero() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={1}>
-            <p className="mt-10 max-w-[740px] font-body text-lead text-ink">{HERO.subtitle}</p>
+            <p className="mt-6 max-w-[740px] font-body text-lead text-ink">{HERO.subtitle}</p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={2}>

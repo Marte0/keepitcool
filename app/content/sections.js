@@ -304,6 +304,70 @@ export const LEARNING_GOALS = {
   ],
 };
 
+export const TESTIMONIALS = {
+  titleLeft: { before: "Backed up from the ", highlight: "target" },
+  titleRight: { before: "and from ", highlight: "experts" },
+  students: [
+    {
+      id: "student-17",
+      quote:
+        "It made me realize that energy decisions are connected. Every choice affects the whole system.",
+      tagClass: "tag-student",
+      tagLine1: "student",
+      tagLine2: "17 years old",
+      tagAlign: "left",
+      tilt: 6.06,
+      mobileTilt: 2,
+    },
+    {
+      id: "student-16-communicate",
+      quote:
+        "The game pushed us to communicate and build a strategy together, instead of just playing individually.",
+      tagClass: "tag-student-teal",
+      tagLine1: "student",
+      tagLine2: "16 years old",
+      tagAlign: "left",
+      tilt: -7.32,
+      mobileTilt: -2,
+    },
+    {
+      id: "student-16-tradeoffs",
+      quote:
+        "By the end of the game, I realized I had started to understand the trade-offs behind the energy system: every choice had benefits, costs and consequences for the whole nation.",
+      tagClass: "tag-student-play",
+      tagLine1: "student",
+      tagLine2: "16 years old",
+      tagAlign: "left",
+      tilt: -2.09,
+      mobileTilt: -2,
+    },
+  ],
+  experts: [
+    {
+      id: "elena-battipede",
+      quote:
+        "It successfully combines education and entertainment, turning a complex and potentially anxiety-inducing topic into a structured, collaborative challenge.",
+      tagClass: "tag-psychologist",
+      tagLine1: "Elena battipede",
+      tagLine2: "Educational Researcher",
+      tagAlign: "left",
+      tilt: -7.28,
+      mobileTilt: -2,
+    },
+    {
+      id: "silvio-giacomini",
+      quote:
+        "The energy system is a delicate balance between production, demand, infrastructure, costs and social acceptance. Keep it cool makes this balance visible by allowing players to experience the consequences of each decision.",
+      tagClass: "tag-expert-energy",
+      tagLine1: "Silvio Giacomini,",
+      tagLine2: "Energy expert",
+      tagAlign: "left",
+      tilt: 5.46,
+      mobileTilt: 2,
+    },
+  ],
+};
+
 export const PARTNERS = {
   titleBefore: "Partnership with the ",
   titleHighlight: "energy sector",

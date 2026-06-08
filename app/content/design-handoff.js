@@ -8,9 +8,9 @@
 export const DESIGN_HANDOFF = {
   figmaUrl: "https://www.figma.com/design/h8h30JRo9ffjr9tXxvcI5j/Sito?node-id=89-3655",
   contentBrief: "app/content/project-brief.js",
-  status: "redesign-phase-1-complete",
-  currentStep: 9,
-  currentStepName: "Testimonials",
+  status: "redesign-phase-2a-step-5-complete",
+  currentStep: 5,
+  currentStepName: "Polish estetico (Phase 2b)",
   approved: [
     "Step 0 — design tokens (/styleguide)",
     "Font: Chillax Bold (local) + Outfit (Google variable)",
@@ -55,8 +55,17 @@ export const DESIGN_HANDOFF = {
     "Step 4b — SdgCard ×4: bg-sdg-* scoped, border-10 white, icon SDG public/images/sdg/, copy Figma placeholder",
     "Step 4b — griglia 2 col mobile / 4 col md+; tilt desktop −7°/−3.5°/+3.5°/+7°; hover lift solo @media (hover: hover)",
     "Step 4b — SDG corner radius: --sdg-radius-inner = outer − padding (1.5rem − 1.25rem); .sdg-card__media; SdgCardMock allineato",
-    "Step 5 — SKIPPED in phase 1 (Testimonials redesign in corso dall'utente)",
-    "Step 6 — PartnersSection id=partners dopo Learning Goals; titolo highlight-yellow su «energy sector»; no body",
+    "Step 5 — TestimonialsSection tra Learning Goals e Partners; no anchor navbar",
+    "Step 5 — layout due blocchi: (A) titolo sinistra «Backed up from the target» + 3 card studenti destra; (B) 2 card esperti sinistra + titolo destra «and from experts»",
+    "Step 5 — desktop studenti: card 1+2 impilate a sinistra, card 3 a destra; esperti affiancate in diagonale leggera davanti al titolo",
+    "Step 5 — mobile: titolo → card stack distanziate (gap ~1.75rem); stesso ordine per entrambi i blocchi",
+    "Step 5 — quote card bianca rounded-18px shadow-card; testo text-align left; pill sempre top-left su tutte le card",
+    "Step 5 — pill 2 righe: line1 font-body xs lowercase, line2 font-display text-ui uppercase",
+    "Step 5 — tag studenti: tag-student (verde), tag-student-teal, tag-student-play; esperti: tag-psychologist + tag-expert-energy",
+    "Step 5 — nuovi token scoped Testimonials: tag-student-teal / tag-student-play / tag-expert-energy in globals.css + /styleguide",
+    "Step 5 — tilt per card da Figma; hover desktop straighten + lift; RevealOnScroll titolo delay 0, card 1–5 stagger",
+    "Step 5 — copy placeholder Figma in TESTIMONIALS (sections.js); tono stakeholder da project-brief",
+    "Step 6 — PartnersSection id=partners dopo Testimonials; titolo highlight-yellow su «energy sector»; no body",
     "Step 6 — 5 partner PNG RGBA: aet, SUPSI, ticino energia, WATT ABOUT, Dipartimento del territorio — public/images/partners/",
     "Step 6 — scatter desktop (3+2) + mobile scatter; cream-light box, float + tilt, overlap leggero sul titolo",
     "Step 6 — slot assoluti sul .reveal (non wrapper figlio); top-center via left calc(50% − metà box); PNG unoptimized",
@@ -85,16 +94,13 @@ export const DESIGN_HANDOFF = {
     "Footer — logo PNG logo-footer.png unoptimized (~6rem); tagline; nav hash come Navbar; mailto info@keepitcool.ch",
     "Footer — copyright © KEEP IT COOL; no Privacy/Terms (landing senza form — aggiungere solo se analytics/form)",
     "Footer — SITE metadata copy aggiornato a energy game (sections.js); altezza compatta py-6/7",
-    "Home page order: Hero → Game → Energy → Learning Goals → [Testimonials TBD] → Partners → Team → Contact → Footer",
+    "Home page order: Hero → Game → Energy → Learning Goals → Testimonials → Partners → Team → Contact → Footer",
   ],
   next: [
-    "Phase 2a — Step 5 Testimonials: sezione sopra Partners (saltata in phase 1); quote studenti + educatori; tag-student / tag-psychologist; attendere/redesign Figma utente se pronto",
     "Phase 2b — Polish estetico: micro-tweak spacing, animazioni, responsive su sezioni già approvate (un fix per volta)",
     "Phase 2c — Sito finito: copy finale ovunque (sections.js + project-brief), metadata/OG (layout.js SITE), favicon, eventuale cleanup /contact-preview e componenti legacy inutilizzati",
   ],
-  blockers: [
-    "Testimonials — redesign Figma in corso dall'utente; implementare quando asset/layout pronti",
-  ],
+  blockers: [],
   fonts: {
     display: {
       family: "Chillax Bold",
@@ -130,8 +136,14 @@ export const DESIGN_HANDOFF = {
   },
   tagLabels: {
     scoped: true,
-    rule: "tag-student / tag-psychologist SOLO su pill; nomi team = tag-psychologist",
-    text: { student: "#435117", psychologist: "#732474" },
+    rule: "tag-student / tag-psychologist globali (pill + team); tag-student-teal / tag-student-play / tag-expert-energy SOLO TestimonialsSection",
+    text: {
+      student: "#435117",
+      studentTeal: "#005a5d",
+      studentPlay: "#9c3b09",
+      psychologist: "#732474",
+      expertEnergy: "#9c1c36",
+    },
     studentGradient: { start: "#8eaa2c", end: "#708721" },
   },
   definitive: [

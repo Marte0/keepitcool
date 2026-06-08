@@ -30,10 +30,28 @@ const TAG_COLORS = [
     note: "testo su gradient verde",
   },
   {
+    name: "tag-student-teal",
+    className: "tag-student-teal",
+    hex: "#005a5d",
+    note: "solo Testimonials",
+  },
+  {
+    name: "tag-student-play",
+    className: "tag-student-play",
+    hex: "#9c3b09",
+    note: "solo Testimonials",
+  },
+  {
     name: "tag-psychologist",
     className: "tag-psychologist",
     hex: "#732474",
     note: "testo su gradient viola",
+  },
+  {
+    name: "tag-expert-energy",
+    className: "tag-expert-energy",
+    hex: "#9c1c36",
+    note: "solo Testimonials",
   },
 ];
 
@@ -157,7 +175,8 @@ export default function StyleGuidePage() {
       <section className="mt-16">
         <h2 className="font-display text-section text-ink-muted">Tag labels</h2>
         <p className="mt-2 text-body text-ink-muted">
-          Pill per student / psychologist / team — gradient, non flat.
+          Pill per student / psychologist / team — gradient, non flat. Varianti teal, play e
+          expert-energy solo in Testimonials.
         </p>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           {TAG_COLORS.map((c) => (
@@ -260,7 +279,10 @@ export default function StyleGuidePage() {
           <div className="h-24 rounded-xl game-card-play" aria-hidden />
           <div className="h-24 rounded-xl bg-sdg-green" aria-hidden />
           <div className="h-24 rounded-xl tag-student" aria-hidden />
+          <div className="h-24 rounded-xl tag-student-teal" aria-hidden />
+          <div className="h-24 rounded-xl tag-student-play" aria-hidden />
           <div className="h-24 rounded-xl tag-psychologist" aria-hidden />
+          <div className="h-24 rounded-xl tag-expert-energy" aria-hidden />
         </div>
       </section>
     </main>

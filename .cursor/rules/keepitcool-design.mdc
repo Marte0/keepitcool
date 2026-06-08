@@ -32,7 +32,8 @@ Pattern come portfolio: `@source` esplicito, componenti in `app/components/`, co
 
 - **SDG** (`bg-sdg-*`): solo card Learning Goals
 - **Game** (`game-card-talk/plan/play`): solo sezione TALK/PLAN/PLAY
-- **Tag** (`tag-student`, `tag-psychologist`): solo pill label; nomi team = stile psychologist
+- **Tag** (`tag-student`, `tag-psychologist`): pill label globali; nomi team = psychologist
+- **Tag Testimonials** (`tag-student-teal`, `tag-student-play`, `tag-expert-energy`): solo pill in TestimonialsSection
 
 ## CTA vs highlight
 

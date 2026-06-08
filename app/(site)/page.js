@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import GameSection from "../components/GameSection";
 import EnergySection from "../components/EnergySection";
 import LearningGoalsSection from "../components/LearningGoalsSection";
+import TestimonialsSection from "../components/TestimonialsSection";
 import PartnersSection from "../components/PartnersSection";
 import TeamSection from "../components/TeamSection";
 import ContactSection from "../components/ContactSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <GameSection />
       <EnergySection />
       <LearningGoalsSection />
+      <TestimonialsSection />
       <PartnersSection />
       <TeamSection />
       <ContactSection />

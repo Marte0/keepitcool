@@ -17,8 +17,12 @@ function GameTitle() {
 }
 
 export default function GameSection() {
+  // overflow-x-clip: gli asset delle card partono/arrivano off-screen — senza clip allargano la pagina su mobile.
   return (
-    <section className="relative bg-cream" style={{ paddingBlock: "var(--section-py)" }}>
+    <section
+      className="relative overflow-x-clip bg-cream"
+      style={{ paddingBlock: "var(--section-py)" }}
+    >
       <div className="mx-auto w-full max-w-page px-5 lg:px-12">
         <GameCardsRoot cards={GAME.cards}>
           <div className="md:grid md:grid-cols-[minmax(0,530px)_1fr] md:items-center md:gap-8 lg:gap-12">

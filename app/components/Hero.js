@@ -26,27 +26,27 @@ export default function Hero() {
               aria-label="Energy topic folders"
             >
               {HERO.folders.map((folder, index) => (
-                <button
+                <div
                   key={folder.src}
-                  type="button"
-                  className="hero-folder-card relative shrink-0 cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+                  className="hero-folder-card relative shrink-0"
                   style={{
                     "--folder-tilt": `${folder.tilt}deg`,
                     marginTop: `${folder.offsetY}px`,
                     marginLeft: index === 0 ? 0 : "-2.5rem",
                     zIndex: index + 1,
                   }}
-                  aria-label={folder.alt}
                 >
                   <Image
                     src={folder.src}
-                    alt=""
+                    alt={folder.alt}
                     width={228}
                     height={310}
                     className="hero-folder-img drop-shadow-[0_4px_7.4px_rgba(0,0,0,0.12)]"
                     priority={index < 2}
+                    loading={index < 2 ? undefined : "eager"}
+                    unoptimized
                   />
-                </button>
+                </div>
               ))}
             </div>
           </RevealOnScroll>

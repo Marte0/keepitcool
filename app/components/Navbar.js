@@ -59,17 +59,14 @@ function NavLink({ href, label, pathname, onNavigate }) {
 }
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openForPath, setOpenForPath] = useState(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
+  const isMenuOpen = openForPath === pathname;
 
   useEffect(() => {
     if (!isMenuOpen) return;
     function onKeyDown(e) {
-      if (e.key === "Escape") setIsMenuOpen(false);
+      if (e.key === "Escape") setOpenForPath(null);
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -80,12 +77,12 @@ export default function Navbar() {
     label: section.label,
   }));
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = () => setOpenForPath(null);
 
   return (
     <header className="sticky top-4 z-50 w-full pointer-events-none">
       <div className="pointer-events-auto mx-auto max-w-page px-5 lg:px-12">
-        <div className="hidden min-h-[49px] items-center justify-center gap-[100px] md:flex">
+        <div className="hidden min-h-[49px] items-center justify-center gap-[100px] lg:flex">
           <Link
             href="/"
             onClick={(e) => navigateHomeTop(e, pathname)}
@@ -126,7 +123,7 @@ export default function Navbar() {
           </Button>
         </div>
 
-        <div className="flex min-h-[49px] items-center justify-between md:hidden">
+        <div className="flex min-h-[49px] items-center justify-between lg:hidden">
           <Link
             href="/"
             onClick={(e) => navigateHomeTop(e, pathname)}
@@ -148,7 +145,7 @@ export default function Navbar() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-nav"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setOpenForPath(isMenuOpen ? null : pathname)}
               className="cursor-pointer rounded-full border-0 bg-transparent p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
             >
               <span className="nav-pill relative flex h-11 w-11 items-center justify-center">
@@ -178,7 +175,8 @@ export default function Navbar() {
           id="mobile-nav"
           aria-label="Primary mobile"
           aria-hidden={!isMenuOpen}
-          className={`overflow-hidden border-ink/10 transition-all duration-300 ease-out md:hidden ${
+          inert={!isMenuOpen}
+          className={`absolute left-5 right-5 top-full overflow-hidden border-ink/10 transition-all duration-300 ease-out lg:hidden ${
             isMenuOpen
               ? "mt-2 max-h-96 rounded-2xl border bg-cream-light/95 backdrop-blur-md"
               : "max-h-0 border-transparent"

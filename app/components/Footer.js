@@ -34,7 +34,7 @@ function FooterNavLink({ href, label, pathname }) {
     <a
       href={fullHref}
       onClick={(e) => navigateToSectionHash(e, href, pathname)}
-      className="group font-body text-caption text-ink-muted no-underline transition-colors hover:text-ink focus-visible:outline-none focus-visible:text-ink"
+      className="group inline-flex min-h-10 items-center font-body text-caption text-ink-muted no-underline transition-colors hover:text-ink focus-visible:outline-none focus-visible:text-ink"
     >
       <span className="relative inline-block">
         <span className="relative z-10">{label}</span>
@@ -83,7 +83,7 @@ export default function Footer() {
         <div className="mt-5 shrink-0 lg:mt-0 lg:text-right">
           <a
             href={`mailto:${FOOTER.email}`}
-            className="font-body text-caption text-ink-muted no-underline underline-offset-4 transition-colors hover:text-ink hover:underline focus-visible:outline-none focus-visible:text-ink focus-visible:underline"
+            className="inline-flex min-h-10 items-center font-body text-caption text-ink-muted no-underline underline-offset-4 transition-colors hover:text-ink hover:underline focus-visible:outline-none focus-visible:text-ink focus-visible:underline"
           >
             {FOOTER.email}
           </a>

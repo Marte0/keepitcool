@@ -20,43 +20,18 @@ const STACK_ITEMS = [
 
 const GameCardsContext = createContext(null);
 
-const ASSET_STAGGER_MS = 90;
-const ASSET_DURATION_OUT_MS = 520;
-const ASSET_DURATION_IN_MS = 760;
-
-/** Mobile: solo posizione di partenza off-screen; arrivo = stessi offset/displayWidth desktop. */
-const MOBILE_ENTRY_BY_SLOT = {
-  "top-right": { x: 220, y: -320 },
-  "mid-left": { x: -300, y: 0 },
-  "bottom-left": { x: -300, y: 300 },
+const ASSET_STAGGER_MS = 80;
+const MOBILE_ASSET_POSITIONS = {
+  "top-right": { x: 115, y: -140 },
+  "mid-left": { x: -118, y: 45 },
+  "bottom-left": { x: -45, y: 175 },
 };
-
-function getMobileEntry(asset) {
-  const slot = MOBILE_ENTRY_BY_SLOT[asset.slot] ?? MOBILE_ENTRY_BY_SLOT["mid-left"];
-  return {
-    x: asset.mobileEntryX ?? slot.x,
-    y: asset.mobileEntryY ?? slot.y,
-  };
-}
-
-function getAssetVars(asset, isActive, variant) {
-  if (variant === "mobile") {
-    const entry = getMobileEntry(asset);
-    return {
-      x: isActive ? asset.offsetX : entry.x,
-      y: isActive ? asset.offsetY : entry.y,
-      w: asset.displayWidth,
-      tilt: isActive ? asset.tilt : 0,
-    };
-  }
-
-  return {
-    x: isActive ? asset.offsetX : 0,
-    y: isActive ? asset.offsetY : 0,
-    w: asset.displayWidth,
-    tilt: isActive ? asset.tilt : 0,
-  };
-}
+const MOBILE_BOTTOM_ASSET_Y = { talk: 190, plan: 180, play: 140 };
+const MOBILE_ASSET_ENTRY = {
+  "top-right": { x: 360, y: -350 },
+  "mid-left": { x: -360, y: 45 },
+  "bottom-left": { x: -300, y: 340 },
+};
 
 function GameCardScene({ card, isActive, variant = "desktop" }) {
   const isMobile = variant === "mobile";
@@ -66,11 +41,16 @@ function GameCardScene({ card, isActive, variant = "desktop" }) {
       className={`game-card-scene relative aspect-square w-full${isMobile ? " game-card-scene--mobile" : ""}${isActive ? " is-active" : ""}`}
     >
       <div
-        className={`game-card-assets pointer-events-none absolute inset-0${isMobile ? " z-[3]" : " z-[1]"}`}
+        className="game-card-assets pointer-events-none absolute inset-0"
         aria-hidden
       >
         {card.assets?.map((asset, index) => {
-          const vars = getAssetVars(asset, isActive, variant);
+          const position = isMobile ? MOBILE_ASSET_POSITIONS[asset.slot] : null;
+          const entry = isMobile ? MOBILE_ASSET_ENTRY[asset.slot] : null;
+          const widthScale = isMobile ? 0.9 : 0.78;
+          const activeY = asset.slot === "bottom-left"
+            ? (MOBILE_BOTTOM_ASSET_Y[card.id] ?? position?.y ?? asset.offsetY)
+            : (position?.y ?? asset.offsetY);
 
           return (
             <div
@@ -79,13 +59,10 @@ function GameCardScene({ card, isActive, variant = "desktop" }) {
               className="game-card-asset"
               style={{
                 "--game-asset-delay": isActive ? `${index * ASSET_STAGGER_MS}ms` : "0ms",
-                "--game-asset-duration": isActive
-                  ? `${ASSET_DURATION_OUT_MS}ms`
-                  : `${ASSET_DURATION_IN_MS}ms`,
-                "--game-asset-x": `${vars.x}px`,
-                "--game-asset-y": `${vars.y}px`,
-                "--game-asset-tilt": `${vars.tilt}deg`,
-                "--game-asset-w": `${vars.w}px`,
+                "--game-asset-x": `${isActive ? (position?.x ?? asset.offsetX) : (entry?.x ?? 0)}px`,
+                "--game-asset-y": `${isActive ? activeY : (entry?.y ?? 0)}px`,
+                "--game-asset-tilt": `${isActive ? asset.tilt : 0}deg`,
+                "--game-asset-w": `${asset.displayWidth * widthScale}px`,
               }}
             >
               <Image
@@ -151,7 +128,9 @@ export function GameCardsRoot({ cards, children }) {
     }
 
     const viewportCenter = window.innerHeight * 0.5;
-    const activationThreshold = Math.min(window.innerHeight * 0.18, 128);
+    const activationThreshold = window.innerWidth < 1024
+      ? Math.min(window.innerHeight * 0.4, 320)
+      : Math.min(window.innerHeight * 0.18, 128);
     let closestId = null;
     let closestDistance = Infinity;
 
@@ -245,7 +224,7 @@ export function GameCardDesktopStack() {
       aria-label="TALK, PLAN and PLAY game phases"
     >
       {cards.map((card, index) => {
-        const { itemClass, revealDelay, tilt } = STACK_ITEMS[index];
+        const { itemClass, revealDelay } = STACK_ITEMS[index];
         const isActive = activeId === card.id;
 
         return (
@@ -270,7 +249,7 @@ export function GameCardMobileStack() {
   const { cards, activeId, registerRef } = useGameCards();
 
   return (
-    <div className="game-card-mobile-stack mt-10 flex flex-col items-center gap-8">
+    <div className="game-card-mobile-stack mt-36 flex flex-col items-center gap-32">
       {cards.map((card, index) => {
         const { tilt } = STACK_ITEMS[index];
         const isActive = activeId === card.id;
@@ -279,7 +258,7 @@ export function GameCardMobileStack() {
           <div
             key={card.id}
             ref={(el) => registerRef(card.id, el, "mobile")}
-            className={`game-card-mobile-item w-full max-w-[304px]${isActive ? " is-active" : ""}`}
+            className={`game-card-mobile-item${isActive ? " is-active" : ""}`}
             style={{ "--game-card-tilt": `${tilt}deg` }}
           >
             <RevealOnScroll delay={index + 2}>

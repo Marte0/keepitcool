@@ -4,18 +4,24 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const AUTO_SCROLL_MS = 1300;
-const PAUSE_RESUME_MS = 3500;
 
 export default function HeroFoldersCarousel({ folders }) {
   const scrollRef = useRef(null);
   const itemRefs = useRef([]);
   const activeIndexRef = useRef(0);
   const pausedRef = useRef(false);
-  const resumeTimerRef = useRef(null);
+  const visibleRef = useRef(false);
   const reducedMotionRef = useRef(false);
+  const loadedImagesRef = useRef(new Set());
 
   const [spacerWidth, setSpacerWidth] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imagesReady, setImagesReady] = useState(false);
+
+  const markImageReady = useCallback((index) => {
+    loadedImagesRef.current.add(index);
+    if (loadedImagesRef.current.size === folders.length) setImagesReady(true);
+  }, [folders.length]);
 
   const scrollToIndex = useCallback((index, behavior) => {
     const container = scrollRef.current;
@@ -63,10 +69,6 @@ export default function HeroFoldersCarousel({ folders }) {
 
   const pauseAutoScroll = useCallback(() => {
     pausedRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      pausedRef.current = false;
-    }, PAUSE_RESUME_MS);
   }, []);
 
   useEffect(() => {
@@ -96,25 +98,15 @@ export default function HeroFoldersCarousel({ folders }) {
 
     window.addEventListener("resize", updateSpacerWidth);
 
-    const observers = itemRefs.current
-      .filter(Boolean)
-      .map((el) => {
-        const observer = new IntersectionObserver(
-          () => updateActiveFromScroll(),
-          {
-            root: container,
-            rootMargin: "-40% 0px -40% 0px",
-            threshold: [0, 0.25, 0.5, 0.75, 1],
-          }
-        );
-        observer.observe(el);
-        return observer;
-      });
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting;
+    }, { threshold: 0.5 });
+    visibilityObserver.observe(container);
 
     let intervalId = null;
-    if (!reduced) {
+    if (!reduced && imagesReady) {
       intervalId = setInterval(() => {
-        if (pausedRef.current) return;
+        if (pausedRef.current || !visibleRef.current || document.hidden) return;
         const next = (activeIndexRef.current + 1) % folders.length;
         scrollToIndex(next);
       }, AUTO_SCROLL_MS);
@@ -127,12 +119,12 @@ export default function HeroFoldersCarousel({ folders }) {
       container.removeEventListener("touchstart", pauseAutoScroll);
       container.removeEventListener("wheel", pauseAutoScroll);
       window.removeEventListener("resize", updateSpacerWidth);
-      observers.forEach((observer) => observer.disconnect());
+      visibilityObserver.disconnect();
       if (intervalId) clearInterval(intervalId);
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     };
   }, [
     folders.length,
+    imagesReady,
     pauseAutoScroll,
     scrollToIndex,
     updateActiveFromScroll,
@@ -145,7 +137,6 @@ export default function HeroFoldersCarousel({ folders }) {
         ref={scrollRef}
         className="hero-folder-scroll"
         aria-label="Energy topic folders"
-        aria-live="polite"
       >
         <div className="hero-folder-scroll-track">
           <div
@@ -162,9 +153,16 @@ export default function HeroFoldersCarousel({ folders }) {
               }}
               type="button"
               className="hero-folder-scroll-item shrink-0 cursor-pointer border-0 bg-transparent p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
-              aria-label={folder.alt}
-              aria-current={activeIndex === index ? "true" : undefined}
-              onFocus={() => scrollToIndex(index)}
+              aria-label={`Show ${folder.alt} folder`}
+              aria-pressed={activeIndex === index}
+              onClick={() => {
+                pauseAutoScroll();
+                scrollToIndex(index);
+              }}
+              onFocus={() => {
+                pauseAutoScroll();
+                scrollToIndex(index);
+              }}
             >
               <span
                 className={`hero-folder-card hero-folder-card-inner block ${
@@ -175,10 +173,24 @@ export default function HeroFoldersCarousel({ folders }) {
                 <Image
                   src={folder.src}
                   alt=""
+                  aria-hidden="true"
+                  width={228}
+                  height={310}
+                  className="hero-folder-img hero-folder-shadow-img"
+                  loading="eager"
+                  unoptimized
+                />
+                <Image
+                  src={folder.src}
+                  alt=""
                   width={228}
                   height={310}
                   className="hero-folder-img"
                   priority={index === 0}
+                  loading={index === 0 ? undefined : "eager"}
+                  unoptimized
+                  onLoad={() => markImageReady(index)}
+                  onError={() => markImageReady(index)}
                 />
               </span>
             </button>

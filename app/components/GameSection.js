@@ -28,7 +28,7 @@ export default function GameSection() {
           <div className="lg:grid lg:grid-cols-[minmax(0,530px)_1fr] lg:items-center lg:gap-12">
             <div
               id="how-it-works"
-              className="scroll-anchor-how-it-works max-w-[530px] lg:self-center"
+              className="scroll-anchor-how-it-works max-w-[530px] text-center lg:self-center lg:text-left"
             >
               <RevealOnScroll delay={0} className="lg:hidden">
                 <GameTitle />

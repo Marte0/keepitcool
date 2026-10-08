@@ -124,7 +124,7 @@ export default function PrivacyPage() {
               <h2 id="contact-heading" className={headingClass}>
                 Contact
               </h2>
-              <p className={paragraphClass}>[RESPONSIBLE PERSON OR ORGANISATION]</p>
+              <p className={paragraphClass}>Marta Piatti</p>
               <p className="mt-2 font-body text-body">
                 <a href={`mailto:${SITE.email}`} className={emailClass}>
                   {SITE.email}
